@@ -1,27 +1,37 @@
 import { Element } from "./element";
 /* TODO DOC */
-export class GridItem extends Element {
 
-    constructor() {
+class Grid extends Element {
+
+    constructor(spacing) {
         super("div");
-        this.addClasses("col");
+        this.addClasses("row", `g-${spacing}`);
+    }
+
+    add(item) {
+        item.addClasses("col");
+        this.appendChild(item);
+        return this;
+    }
+
+    remove(item) {
+        item.remove();
+        return this;
     }
 }
 
-export class Grid extends Element {
+export class Grid6 extends Grid {
 
-    constructor(numCols) {
-        super("div");
-        this.addClasses("row", "row-cols-1", `row-cols-md-${numCols}`, "g-4");
+    constructor(spacing) {
+        super(spacing);
+        this.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-4", "row-cols-xl-5", "row-cols-xxl-6");
     }
+}
 
-    add(elem) {
-        this.appendChild(elem);
-        return this;
-    }
+export class Grid2 extends Grid {
 
-    remove(elem) {
-        elem.remove();
-        return this;
+    constructor(spacing) {
+        super(spacing);
+        this.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-2", "row-cols-lg-2", "row-cols-xl-2", "row-cols-xxl-2");
     }
 }

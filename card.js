@@ -1,4 +1,5 @@
 import { Element } from "./element";
+import { Img } from "./img";
 
 /**
  * Card header element.
@@ -43,18 +44,18 @@ export class CardFooter extends Element {
 /**
  * Card image element.
  */
-export class CardImg extends Element {
+export class CardImg extends Img {
 
     /**
      * 
      * @param {string} src image src
      * @param {string} alt image alt
+     * @param {string} objectFit CSS object-fit parameter
+     * @param {string | number} aspectRatio CSS aspect-ratio parameter
      */
-    constructor(src, alt) {
-        super("img");
-        this.addClasses("card-img-top", "p-3");
-        this.elem.src = src;
-        this.elem.alt = alt;
+    constructor(src, alt, objectFit, aspectRatio) {
+        super(src, alt, objectFit, aspectRatio);
+        this.addClasses("card-img-top", "p-0");
     }
 }
 

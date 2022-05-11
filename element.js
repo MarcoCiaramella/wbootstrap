@@ -116,7 +116,7 @@ export class Element {
      */
     onClick(fun) {
         this.cursor("pointer");
-        this.elem.onclick = () => fun(this);
+        this.#elem.onclick = () => fun(this);
         return this;
     }
 
@@ -207,6 +207,57 @@ export class Element {
         this.#elem.setAttribute("data-bs-toggle", "tooltip");
         this.#elem.setAttribute("data-bs-placement", "top");
         this.#elem.setAttribute("title", text);
+        return this;
+    }
+
+    /**
+     * Sets element size.
+     * @param {string} width 
+     * @param {string} height 
+     * @returns this
+     */
+    size(width, height) {
+        this.#elem.style.width = width;
+        this.#elem.style.height = height;
+        return this;
+    }
+
+    /**
+     * Sets a CSS filter.
+     * @param {string} filter CSS filter
+     * @returns this
+     */
+    filter(filter) {
+        this.#elem.style.filter = filter;
+        return this;
+    }
+
+    /**
+     * Binds a function for the onwheel event.
+     * @param {function} fun 
+     * @returns this
+     */
+    onWheel(fun) {
+        this.#elem.onwheel = event => fun(event);
+        return this;
+    }
+
+    /**
+     * Horizontally centers this element. 
+     * @returns this
+     */
+    center() {
+        this.#elem.style.margin = "auto";
+        return this;
+    }
+
+    /**
+     * Sets z-index property.
+     * @param {number} z 
+     * @returns this
+     */
+    zIndex(z) {
+        this.#elem.style.zIndex = z;
         return this;
     }
 }
