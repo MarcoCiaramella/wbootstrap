@@ -1,0 +1,22 @@
+{
+  "name": "@marco_ciaramella/wbootstrap",
+  "version": "1.0.0",
+  "description": "wrapper for DOM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcoCiaramella/wbootstrap.git"
+  },
+  "keywords": [
+    "bootstrap"
+  ],
+  "author": "Marco Ciaramella",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarcoCiaramella/wbootstrap/issues"
+  },
+  "homepage": "https://github.com/MarcoCiaramella/wbootstrap#readme"
+}
