@@ -1,0 +1,1 @@
+declare module '@marco_ciaramella/wbootstrap';
