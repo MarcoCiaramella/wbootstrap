@@ -3,6 +3,8 @@ import { Label } from "./label";
 import { Input } from "./input";
 import { SimpleButton } from "./button";
 import { Textarea } from "./textarea";
+import { Div } from "./div";
+import { Select } from "./select";
 
 class Feedback extends Element {
 
@@ -32,22 +34,32 @@ class Invalid extends Feedback {
 /**
  * Form item element.
  */
-export class FormItem extends Element {
+class FormItem extends Element {
 
+    #row;
     #item;
     #customValidation;
     #invalid;
+    #itemDiv;
 
     /**
      * 
      * @param {string} label 
-     * @param {number} marginBottom 
+     * @param {Element} item 
      */
-    constructor(label, marginBottom) {
+    constructor(label, item) {
         super("div");
-        this.addClasses(`mb-${marginBottom}`);
-        this.appendChild(new Label(label).addClasses("form-label"));
-        this.#item = null;
+        this.#item = item;
+        this.#itemDiv = new Div()
+            .addClasses("col-8")
+            .appendChild(this.#item);
+        this.#row = new Div()
+            .addClasses("row", "g-3", "align-items-center")
+            .appendChild(new Div()
+                .addClasses("col-4")
+                .appendChild(new Label(label).addClasses("col-form-label")))
+            .appendChild(this.#itemDiv);
+        this.appendChild(this.#row);
         this.#customValidation = null;
         this.#invalid = null;
     }
@@ -62,7 +74,7 @@ export class FormItem extends Element {
             this.#item.elem.setCustomValidity(message ? message : "");
             if (message) {
                 this.#invalid = new Invalid(message);
-                this.appendChild(this.#invalid);
+                this.#itemDiv.appendChild(this.#invalid);
             }
         }
         else {
@@ -83,13 +95,6 @@ export class FormItem extends Element {
      */
     get customValidation() {
         return this.#customValidation;
-    }
-
-    /**
-     * Sets item.
-     */
-    set item(item) {
-        this.#item = item;
     }
 
     /**
@@ -115,9 +120,11 @@ export class FormItem extends Element {
 
     /**
      * Sets as read-only.
+     * @returns this
      */
     readOnly() {
         this.#item.readOnly();
+        return this;
     }
 }
 
@@ -131,19 +138,14 @@ export class FormInput extends FormItem {
      * @param {string} label as HTML code
      * @param {string} type one of supported HTML input type
      * @param {string} placeholder 
-     * @param {boolean} required required true/false
-     * @param {number} marginBottom 
      */
-    constructor(label, type, placeholder, required, marginBottom) {
-        super(label, marginBottom);
-        const input = new Input(type, placeholder, null, null, required).addClasses("form-control");
-        this.item = input;
-        this.appendChild(input);
+    constructor(label, type, placeholder) {
+        super(label, new Input(type, placeholder).addClasses("form-control"));
     }
 }
 
 /**
- * Form text ares element.
+ * Form textarea element.
  */
 export class FormTextarea extends FormItem {
 
@@ -151,14 +153,35 @@ export class FormTextarea extends FormItem {
      * 
      * @param {string} label as HTML code
      * @param {string} placeholder 
-     * @param {boolean} required required true/false
-     * @param {number} marginBottom 
      */
-    constructor(label, placeholder, required, marginBottom) {
-        super(label, marginBottom);
-        const textarea = new Textarea(placeholder, null, null, required).addClasses("form-control");
-        this.item = textarea;
-        this.appendChild(textarea);
+    constructor(label, placeholder) {
+        super(label, new Textarea(placeholder, null, null).addClasses("form-control"));
+    }
+}
+
+/**
+ * Form select element.
+ */
+export class FormSelect extends FormItem {
+
+    /**
+     * 
+     * @param {string} label as HTML code
+     * @param {boolean} required required true/false
+     * @param {string[]} options 
+     */
+    constructor(label, required, options) {
+        super(label, new Select(options));
+    }
+
+    /**
+     * Binds a function called on change event.
+     * @param {function} fun 
+     * @returns this
+     */
+    onChange(fun) {
+        this.item.onChange(fun);
+        return this;
     }
 }
 
@@ -168,24 +191,28 @@ export class FormTextarea extends FormItem {
 export class Form extends Element {
 
     #items;
-    #button;
+    #submitButton;
 
     /**
      * 
      * @param {string} submitButtonContent submit button inner text
-     * @param  {...FormItem} items 
+     * @param {...FormItem} formItems 
      */
-    constructor(submitButtonContent, ...items) {
+    constructor(submitButtonContent, ...formItems) {
         super("form");
+        this.#submitButton = new SimpleButton("submit", null, submitButtonContent)
+            .asPrimary()
+            .disable()
+            .addClasses("m-1");
         this.#items = [];
-        items.forEach(item => {
-            this.#items.push(item);
-            this.appendChild(item);
+        formItems.forEach(formItem => {
+            this.#items.push(formItem);
+            this.appendChild(formItem);
         });
-        this.#button = new SimpleButton("submit", null, submitButtonContent).addClasses("btn-primary");
-        this.appendChild(this.#button);
+        this.elem.oninput = event => this.#submitButton.enable();
         this.elem.noValidate = true;
         this.addClasses("needs-validation");
+        this.appendChild(this.#submitButton);
     }
 
     /**
@@ -202,16 +229,30 @@ export class Form extends Element {
      */
     onSubmit(fun) {
         this.elem.addEventListener('submit', async event => {
-            this.#button.disable();
-            const oldInnerHTML = this.#button.runSpinner();
+            this.#submitButton.disable();
+            const oldInnerHTML = this.#submitButton.runSpinner();
             event.preventDefault();
             event.stopPropagation();
             this.#items.forEach(item => item.clear().validate());
             this.addClasses('was-validated');
             await fun(this.elem.checkValidity());
-            this.#button.innerHTML = oldInnerHTML;
-            this.#button.enable();
+            this.#submitButton.innerHTML = oldInnerHTML;
+            this.#submitButton.enable();
         }, false);
+        return this;
+    }
+
+    /**
+     * Binds a function for the cancel event.
+     * @param {function} fun 
+     * @returns this
+     */
+    onCancel(fun) {
+        this.appendChild(new SimpleButton("button", null, "Cancel")
+            .asDanger()
+            .enable()
+            .addClasses("m-1")
+            .onClick(button => fun(this)));
         return this;
     }
 }

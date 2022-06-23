@@ -1,7 +1,16 @@
 import { Element } from "./element";
 
+/**
+ * Switch element.
+ */
 export class Switch extends Element {
 
+    /**
+     * 
+     * @param {string} text 
+     * @param {boolean} checked 
+     * @param {function} onClick function called on click event
+     */
     constructor(text, checked, onClick) {
         super("div");
         this.addClasses("form-check", "form-switch");

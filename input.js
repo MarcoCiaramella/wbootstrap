@@ -1,27 +1,76 @@
 import { Element } from "./element";
 
+/**
+ * Input element.
+ */
 export class Input extends Element {
 
-    constructor(type, placeholder, minLength, maxLength, required) {
+    /**
+     * 
+     * @param {string} type one of HTML input type
+     * @param {st\ring} placeholder 
+     * @param {string | number} minLength min number of characters
+     * @param {string | number} maxLength max number of characters
+     */
+    constructor(type, placeholder, minLength, maxLength) {
         super("input");
         this.elem.type = type;
-        this.elem.placeholder = placeholder ? placeholder : "";
-        this.elem.required = required;
+        if (placeholder) this.elem.placeholder = placeholder;
         if (minLength) this.elem.minLength = minLength;
         if (maxLength) this.elem.maxLength = maxLength;
     }
 
+    /**
+     * Sets as read-only.
+     * @returns this
+     */
     readOnly() {
         this.elem.readOnly = true;
         this.addClasses("form-control-plaintext");
         return this;
     }
 
+    /**
+     * Gets input value.
+     */
     get value() {
         return this.elem.value.trim();
     }
 
+    /**
+     * Sets input value.
+     */
     set value(val) {
         this.elem.value = val;
+    }
+
+    /**
+     * Binds a function called on change event.
+     * @param {function} fun 
+     * @returns this
+     */
+    onChange(fun) {
+        this.elem.onchange = event => fun(event);
+        return this;
+    }
+
+    /**
+     * Binds a function called on input event.
+     * @param {function} fun 
+     * @returns this
+     */
+    onInput(fun) {
+        this.elem.oninput = event => fun(event);
+        return this;
+    }
+
+    /**
+     * Binds a function called when key "Enter" is pressed.
+     * @param {function} fun 
+     * @returns this
+     */
+    onEnter(fun) {
+        this.elem.onkeyup = event => { if (event.key === "Enter") fun(this); };
+        return this;
     }
 }

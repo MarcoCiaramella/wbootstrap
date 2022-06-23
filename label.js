@@ -1,11 +1,19 @@
 import { Element } from "./element";
 
+/**
+ * Label element.
+ */
 export class Label extends Element {
 
-    constructor(text, elem) {
+    /**
+     * 
+     * @param {string} innerHTML 
+     * @param {Element} child 
+     */
+    constructor(innerHTML, child) {
         super("label");
-        this.innerHTML = text;
-        this.appendChild(elem);
+        this.innerHTML = innerHTML;
+        this.appendChild(child);
     }
 
 }

@@ -1,5 +1,6 @@
 import { Element } from "./element";
 import { MaterialIcon } from "./icon";
+import { Text } from "./text";
 
 
 /**
@@ -10,29 +11,31 @@ class Button extends Element {
     /**
      * 
      * @param {string} type one of available button types
-     * @param {string} text inner text
      */
-    constructor(type, text) {
+    constructor(type) {
         super("button");
         this.addClasses("btn");
         this.elem.type = type;
-        if (text) this.innerText = text;
     }
 
     /**
      * Disable button.
+     * @returns this
      */
     disable() {
         this.elem.disabled = true;
+        return this;
     }
 
     /**
      * Enable button.
+     * @returns this
      */
     enable() {
         this.elem.disabled = false;
+        return this;
     }
-    
+
     /**
      * Replaces inner HTML with a loading spinner.
      * @returns replaced inner HTML
@@ -48,7 +51,7 @@ class Button extends Element {
      * @param {function} fun 
      * @returns this
      */
-     onClick(fun) {
+    onClick(fun) {
         this.cursor("pointer");
         this.elem.onclick = async () => {
             this.disable();
@@ -58,6 +61,99 @@ class Button extends Element {
             this.enable();
         };
         return this;
+    }
+
+    #class(cls, outline) {
+        this.addClasses(`btn-${outline ? "outline-" : ""}${cls}`);
+    }
+
+    /**
+     * Sets as primary button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns this
+     */
+    asPrimary(outline) {
+        this.#class("primary", outline);
+        return this
+    }
+
+    /**
+     * Sets as secondary button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns this
+     */
+    asSecondary(outline) {
+        this.#class("secondary", outline);
+        return this
+    }
+
+    /**
+     * Sets as success button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns this
+     */
+    asSuccess(outline) {
+        this.#class("success", outline);
+        return this
+    }
+
+    /**
+     * Sets as danger button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns this
+     */
+    asDanger(outline) {
+        this.#class("danger", outline);
+        return this
+    }
+
+    /**
+     * Sets as warning button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns this
+     */
+    asWarning(outline) {
+        this.#class("warning", outline);
+        return this
+    }
+
+    /**
+     * Sets as info button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns this
+     */
+    asInfo(outline) {
+        this.#class("info", outline);
+        return this
+    }
+
+    /**
+     * Sets as light button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns this
+     */
+    asLight(outline) {
+        this.#class("light", outline);
+        return this
+    }
+
+    /**
+     * Sets as dark button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns this
+     */
+    asDark(outline) {
+        this.#class("dark", outline);
+        return this
+    }
+
+    /**
+     * Sets as link button.
+     * @returns this
+     */
+    asLink() {
+        this.#class("link", outline);
+        return this
     }
 }
 
@@ -73,8 +169,9 @@ export class SimpleButton extends Button {
      * @param {string} text inner text
      */
     constructor(type, img, text) {
-        super(type, text);
+        super(type);
         img && this.appendChild(img);
+        text && this.appendChild(new Text("i", text));
     }
 }
 
@@ -90,7 +187,8 @@ export class IconButton extends Button {
      * @param {string} text inner text
      */
     constructor(type, iconName, text) {
-        super(type, text);
+        super(type);
         iconName && this.appendChild(new MaterialIcon(iconName));
+        text && this.appendChild(new Text("i", text));
     }
 }

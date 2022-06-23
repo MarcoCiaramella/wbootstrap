@@ -55,7 +55,7 @@ export class CardImg extends Img {
      */
     constructor(src, alt, objectFit, aspectRatio) {
         super(src, alt, objectFit, aspectRatio);
-        this.addClasses("card-img-top", "p-0");
+        this.addClasses("card-img-top");
     }
 }
 
@@ -76,7 +76,7 @@ export class Card extends Element {
         super("div");
         this.addClasses("card", "text-break");
         if (width) {
-            this.elem.style.width = width;
+            this.style.width = width;
         }
         header && this.appendChild(header);
         img && this.appendChild(img);

@@ -1,16 +1,16 @@
 import { Element } from "./element";
 
+/**
+ * Span element.
+ */
 export class Span extends Element {
 
     /**
-     * A span element.
-     * @param {string} text span content
-     * @param {number} fontSize from 1 to 6 or null
+     * 
+     * @param {string} innerHTML span content
      */
-    constructor(text, fontSize) {
+    constructor(innerHTML) {
         super("span");
-        this.elem.style.fontWeight = "bold";
-        this.elem.innerText = text;
-        fontSize && this.addClasses(`fs-${fontSize}`);
+        this.elem.innerHTML = innerHTML;
     }
 }

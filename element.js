@@ -116,15 +116,17 @@ export class Element {
      */
     onClick(fun) {
         this.cursor("pointer");
-        this.#elem.onclick = () => fun(this);
+        this.#elem.onclick = () => fun && fun(this);
         return this;
     }
 
     /**
      * Removes this Element.
+     * @returns this
      */
     remove() {
         this.#elem.remove();
+        return this;
     }
 
     /**
@@ -198,6 +200,18 @@ export class Element {
     }
 
     /**
+     * Sets a background image in base64.
+     * @param {string} imageBase64 
+     * @returns this
+     */
+    backgroundImage(imageBase64) {
+        this.#elem.style.backgroundImage = `url(${imageBase64})`;
+        this.#elem.style.backgroundRepeat = "no-repeat";
+        this.#elem.style.backgroundSize = "cover";
+        return this;
+    }
+
+    /**
      * Sets tooltip.
      * @param {string} text tooltip
      * @returns this
@@ -258,6 +272,125 @@ export class Element {
      */
     zIndex(z) {
         this.#elem.style.zIndex = z;
+        return this;
+    }
+
+    /**
+     * Sets CSS display property.
+     * @param {string} d 
+     * @returns this
+     */
+    display(d) {
+        this.#elem.style.display = d;
+        return this;
+    }
+
+    /**
+     * Sets CSS max width property.
+     * @param {string} mw 
+     * @returns this
+     */
+    maxWidth(mw) {
+        this.#elem.style.maxWidth = mw;
+        return this;
+    }
+
+    /**
+     * Sets CSS min width property.
+     * @param {string} mw 
+     * @returns this
+     */
+    minWidth(mw) {
+        this.#elem.style.minWidth = mw;
+        return this;
+    }
+
+    /**
+     * Sets CSS max height property.
+     * @param {string} mh 
+     * @returns this
+     */
+    maxHeight(mh) {
+        this.#elem.style.maxHeight = mh;
+        return this;
+    }
+
+    /**
+     * Sets CSS min height property.
+     * @param {string} mh 
+     * @returns this
+     */
+    minHeight(mh) {
+        this.#elem.style.minHeight = mh;
+        return this;
+    }
+
+    /**
+     * Gets element style property.
+     */
+    get style() {
+        return this.#elem.style;
+    }
+
+    /**
+     * Binds a function for the onmouseover event.
+     * @param {function} fun 
+     * @returns this
+     */
+    onMouseOver(fun) {
+        this.#elem.onmouseover = event => fun(event);
+        return this;
+    }
+
+    /**
+     * Binds a function for the onmouseleave event.
+     * @param {function} fun 
+     * @returns this
+     */
+    onMouseLeave(fun) {
+        this.#elem.onmouseleave = event => fun(event);
+        return this;
+    }
+
+    /**
+     * Adds CSS animation to this element.
+     * @param {string} name 
+     * @param {string} duration 
+     * @param {string} timingFunction 
+     * @param {string} delay 
+     * @param {string} iterationCount 
+     * @param {string} direction 
+     * @param {string} fillMode 
+     * @param {string} playState 
+     * @returns this
+     */
+    addAnimation(name, duration, timingFunction, delay, iterationCount, direction, fillMode, playState) {
+        const animation = `${name ? name : ""} ${duration ? duration : ""} ${timingFunction ? timingFunction : ""} ${delay ? delay : ""} ${iterationCount ? iterationCount : ""} ${direction ? direction : ""} ${fillMode ? fillMode : ""} ${playState ? playState : ""}`;
+        if (this.style.animation) {
+            this.style.animation += `, ${animation}`;
+        }
+        else {
+            this.style.animation = animation;
+        }
+        return this;
+    }
+
+    /**
+     * Adds CSS transition to this element.
+     * @param {string} property 
+     * @param {string} duration 
+     * @param {string} timingFunction 
+     * @param {string} delay 
+     * @returns this
+     */
+    addTransition(property, duration, timingFunction, delay) {
+        const transition = `${property} ${duration} ${timingFunction ? timingFunction : ""} ${delay ? delay : ""}`;
+        if (this.style.transition) {
+            this.style.transition += `, ${transition}`;
+        }
+        else {
+            this.style.transition = transition;
+        }
         return this;
     }
 }
