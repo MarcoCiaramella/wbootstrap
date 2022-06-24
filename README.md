@@ -28,8 +28,9 @@ Create an html page like this
 
 </html>
 ```
+Add your js code in index.js.
 
-Add your js code in index.js. First of all you need a body element
+First of all you need a body element
 ```javascript
 const body = new Body();
 ```
