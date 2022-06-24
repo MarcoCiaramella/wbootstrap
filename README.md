@@ -29,7 +29,12 @@ Create an html page like this
 </html>
 ```
 
-Add your js code in index.js
+Add your js code in index.js. First of all you need a body element
 ```javascript
 const body = new Body();
 ```
+then you can append child to this body. For example
+```javascript
+body.appendChild(new FlexColumnFull(3));
+```
+See public [documentation](https://github.com/MarcoCiaramella/wbootstrap/blob/main/index.js) for all supported HTML elements styled with bootstrap 5. Further samples will follow as soon as possible.
