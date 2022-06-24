@@ -1,11 +1,7 @@
 # wbootstrap
-
 wboostrap is a minimal wrapper for DOM based on Bootstrap and Google Material.
-
 ## How to use
-
 Create an html page like this
-
 ```html
 <!DOCTYPE html>
 <html>
