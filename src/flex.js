@@ -27,7 +27,7 @@ class Flex extends Element {
     /**
      * Sets the justify content type.
      * @param {string} type one of the supported bootstrap values
-     * @returns this
+     * @returns {Flex} this
      */
     justifyContent(type) {
         this.addClasses(`justify-content-${type}`);
@@ -37,7 +37,7 @@ class Flex extends Element {
     /**
      * Sets the align items type.
      * @param {string} type one of the supported bootstrap values
-     * @returns this
+     * @returns {Flex} this
      */
     alignItems(type) {
         this.addClasses(`align-items-${type}`);

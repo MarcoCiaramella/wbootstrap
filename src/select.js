@@ -18,7 +18,7 @@ export class Select extends Element {
     /**
      * Binds a function called on change event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Select} this
      */
     onChange(fun) {
         this.elem.onchange = event => fun(event);

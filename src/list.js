@@ -19,7 +19,7 @@ export class UList extends Element {
      * @param {string} text 
      * @param {string} href 
      * @param {string[]} classes 
-     * @returns 
+     * @returns {UList} this
      */
     addItem(text, href, classes) {
         this.elem.innerHTML += `<li><a class="${classes}" href="${href}">${text}</a></li>`;

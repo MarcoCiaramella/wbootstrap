@@ -22,7 +22,7 @@ export class Input extends Element {
 
     /**
      * Sets as read-only.
-     * @returns this
+     * @returns {Input} this
      */
     readOnly() {
         this.elem.readOnly = true;
@@ -47,7 +47,7 @@ export class Input extends Element {
     /**
      * Binds a function called on change event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Input} this
      */
     onChange(fun) {
         this.elem.onchange = event => fun(event);
@@ -57,7 +57,7 @@ export class Input extends Element {
     /**
      * Binds a function called on input event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Input} this
      */
     onInput(fun) {
         this.elem.oninput = event => fun(event);
@@ -67,7 +67,7 @@ export class Input extends Element {
     /**
      * Binds a function called when key "Enter" is pressed.
      * @param {function} fun 
-     * @returns this
+     * @returns {Input} this
      */
     onEnter(fun) {
         this.elem.onkeyup = event => { if (event.key === "Enter") fun(this); };

@@ -34,7 +34,7 @@ export class Textarea extends Element {
 
     /**
      * Sets as read-only.
-     * @returns this
+     * @returns {Textarea} this
      */
     readOnly() {
         this.elem.readOnly = true;
@@ -45,7 +45,7 @@ export class Textarea extends Element {
     /**
      * Binds a function called on input event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Textarea} this
      */
     onInput(fun) {
         this.elem.oninput = event => fun(event);
@@ -55,7 +55,7 @@ export class Textarea extends Element {
     /**
      * Binds a function called on change event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Textarea} this
      */
     onChange(fun) {
         this.elem.onchange = event => fun(event);

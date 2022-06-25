@@ -120,7 +120,7 @@ class FormItem extends Element {
 
     /**
      * Sets as read-only.
-     * @returns this
+     * @returns {FormItem} this
      */
     readOnly() {
         this.#item.readOnly();
@@ -177,7 +177,7 @@ export class FormSelect extends FormItem {
     /**
      * Binds a function called on change event.
      * @param {function} fun 
-     * @returns this
+     * @returns {FormSelect} this
      */
     onChange(fun) {
         this.item.onChange(fun);
@@ -225,7 +225,7 @@ export class Form extends Element {
     /**
      * Binds a function for the submit event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Form} this
      */
     onSubmit(fun) {
         this.elem.addEventListener('submit', async event => {
@@ -245,7 +245,7 @@ export class Form extends Element {
     /**
      * Binds a function for the cancel event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Form} this
      */
     onCancel(fun) {
         this.appendChild(new SimpleButton("button", null, "Cancel")

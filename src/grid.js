@@ -35,7 +35,7 @@ export class GridRow extends Element {
     /**
      * Adds GridItem.
      * @param {GridItem} item 
-     * @returns this
+     * @returns {GridRow} this
      */
     add(item) {
         this.appendChild(item);
@@ -46,7 +46,7 @@ export class GridRow extends Element {
      * Replaces GridItem.
      * @param {GridItem} newItem 
      * @param {GridItem} oldItem 
-     * @returns this
+     * @returns {GridRow} this
      */
     replace(newItem, oldItem) {
         this.replaceChild(newItem, oldItem);
@@ -56,7 +56,7 @@ export class GridRow extends Element {
     /**
      * Removes GridItem.
      * @param {GridItem} item 
-     * @returns this
+     * @returns {GridRow} this
      */
     remove(item) {
         item.remove();

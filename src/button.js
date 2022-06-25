@@ -20,7 +20,7 @@ class Button extends Element {
 
     /**
      * Disable button.
-     * @returns this
+     * @returns {Button} this
      */
     disable() {
         this.elem.disabled = true;
@@ -29,7 +29,7 @@ class Button extends Element {
 
     /**
      * Enable button.
-     * @returns this
+     * @returns {Button} this
      */
     enable() {
         this.elem.disabled = false;
@@ -38,7 +38,7 @@ class Button extends Element {
 
     /**
      * Replaces inner HTML with a loading spinner.
-     * @returns replaced inner HTML
+     * @returns {string} replaced inner HTML
      */
     runSpinner() {
         const oldInnerHTML = this.innerHTML;
@@ -49,7 +49,7 @@ class Button extends Element {
     /**
      * Binds a function for the onclick event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Button} this
      */
     onClick(fun) {
         this.cursor("pointer");
@@ -70,7 +70,7 @@ class Button extends Element {
     /**
      * Sets as primary button.
      * @param {boolean | null} outline specifies outline mode
-     * @returns this
+     * @returns {Button} this
      */
     asPrimary(outline) {
         this.#class("primary", outline);
@@ -80,7 +80,7 @@ class Button extends Element {
     /**
      * Sets as secondary button.
      * @param {boolean | null} outline specifies outline mode
-     * @returns this
+     * @returns {Button} this
      */
     asSecondary(outline) {
         this.#class("secondary", outline);
@@ -90,7 +90,7 @@ class Button extends Element {
     /**
      * Sets as success button.
      * @param {boolean | null} outline specifies outline mode
-     * @returns this
+     * @returns {Button} this
      */
     asSuccess(outline) {
         this.#class("success", outline);
@@ -100,7 +100,7 @@ class Button extends Element {
     /**
      * Sets as danger button.
      * @param {boolean | null} outline specifies outline mode
-     * @returns this
+     * @returns {Button} this
      */
     asDanger(outline) {
         this.#class("danger", outline);
@@ -110,7 +110,7 @@ class Button extends Element {
     /**
      * Sets as warning button.
      * @param {boolean | null} outline specifies outline mode
-     * @returns this
+     * @returns {Button} this
      */
     asWarning(outline) {
         this.#class("warning", outline);
@@ -120,7 +120,7 @@ class Button extends Element {
     /**
      * Sets as info button.
      * @param {boolean | null} outline specifies outline mode
-     * @returns this
+     * @returns {Button} this
      */
     asInfo(outline) {
         this.#class("info", outline);
@@ -130,7 +130,7 @@ class Button extends Element {
     /**
      * Sets as light button.
      * @param {boolean | null} outline specifies outline mode
-     * @returns this
+     * @returns {Button} this
      */
     asLight(outline) {
         this.#class("light", outline);
@@ -140,7 +140,7 @@ class Button extends Element {
     /**
      * Sets as dark button.
      * @param {boolean | null} outline specifies outline mode
-     * @returns this
+     * @returns {Button} this
      */
     asDark(outline) {
         this.#class("dark", outline);
@@ -149,7 +149,7 @@ class Button extends Element {
 
     /**
      * Sets as link button.
-     * @returns this
+     * @returns {Button} this
      */
     asLink() {
         this.#class("link", outline);

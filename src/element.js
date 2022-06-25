@@ -28,7 +28,7 @@ export class Element {
     /**
      * Appends an Element as a child.
      * @param {Element} child 
-     * @returns this
+     * @returns {Element} this
      */
     appendChild(child) {
         child && this.#elem.appendChild(child.elem);
@@ -72,7 +72,7 @@ export class Element {
 
     /**
      * Prints the HTML content of this Element.
-     * @returns this
+     * @returns {Element} this
      */
     print() {
         console.log(this.outerHTML);
@@ -82,7 +82,7 @@ export class Element {
     /**
      * Adds classes.
      * @param  {...string} classes 
-     * @returns this
+     * @returns {Element} this
      */
     addClasses(...classes) {
         classes.forEach(cls => {
@@ -93,7 +93,7 @@ export class Element {
 
     /**
      * Changes the visibility to "visible".
-     * @returns this
+     * @returns {Element} this
      */
     show() {
         this.#elem.style.visibility = "visible";
@@ -102,7 +102,7 @@ export class Element {
 
     /**
      * Changes the visibility to "hidden".
-     * @returns this
+     * @returns {Element} this
      */
     hide() {
         this.#elem.style.visibility = "hidden";
@@ -112,7 +112,7 @@ export class Element {
     /**
      * Binds a function for the onclick event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Element} this
      */
     onClick(fun) {
         this.cursor("pointer");
@@ -122,7 +122,7 @@ export class Element {
 
     /**
      * Removes this Element.
-     * @returns this
+     * @returns {Element} this
      */
     remove() {
         this.#elem.remove();
@@ -133,7 +133,7 @@ export class Element {
      * Replaces oldChild with newChild.
      * @param {Element} newChild 
      * @param {Element} oldChild 
-     * @returns this
+     * @returns {Element} this
      */
     replaceChild(newChild, oldChild) {
         this.#elem.replaceChild(newChild.elem, oldChild.elem);
@@ -143,7 +143,7 @@ export class Element {
     /**
      * Binds a function for the update event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Element} this
      */
     onUpdate(fun) {
         this.#update = () => fun(this);
@@ -153,7 +153,7 @@ export class Element {
     /**
      * Starts the update loop. On each cycle will be invoked the function specified with onUpdate method.
      * @param {number} millis interval time in milliseconds between two cycles
-     * @returns this
+     * @returns {Element} this
      */
     startUpdate(millis) {
         this.#interval = setInterval(this.#update, millis);
@@ -162,7 +162,7 @@ export class Element {
 
     /**
      * Stops the update loop.
-     * @returns this
+     * @returns {Element} this
      */
     stopUpdate() {
         clearInterval(this.#interval);
@@ -172,7 +172,7 @@ export class Element {
     /**
      * Sets the cursor type.
      * @param {string} type one of HTML supported types
-     * @returns this
+     * @returns {Element} this
      */
     cursor(type) {
         this.#elem.style.cursor = type;
@@ -182,7 +182,7 @@ export class Element {
     /**
      * Sets a color.
      * @param {string} c 
-     * @returns this
+     * @returns {Element} this
      */
     color(c) {
         this.#elem.style.color = c;
@@ -192,7 +192,7 @@ export class Element {
     /**
      * Sets a background color.
      * @param {string} c 
-     * @returns this
+     * @returns {Element} this
      */
     backgroundColor(c) {
         this.#elem.style.backgroundColor = c;
@@ -202,7 +202,7 @@ export class Element {
     /**
      * Sets a background image in base64.
      * @param {string} imageBase64 
-     * @returns this
+     * @returns {Element} this
      */
     backgroundImage(imageBase64) {
         this.#elem.style.backgroundImage = `url(${imageBase64})`;
@@ -214,7 +214,7 @@ export class Element {
     /**
      * Sets tooltip.
      * @param {string} text tooltip
-     * @returns this
+     * @returns {Element} this
      */
     setTooltip(text) {
         this.#elem.setAttribute("aria-hidden", true);
@@ -228,7 +228,7 @@ export class Element {
      * Sets element size.
      * @param {string} width 
      * @param {string} height 
-     * @returns this
+     * @returns {Element} this
      */
     size(width, height) {
         this.#elem.style.width = width;
@@ -239,7 +239,7 @@ export class Element {
     /**
      * Sets a CSS filter.
      * @param {string} filter CSS filter
-     * @returns this
+     * @returns {Element} this
      */
     filter(filter) {
         this.#elem.style.filter = filter;
@@ -249,7 +249,7 @@ export class Element {
     /**
      * Binds a function for the onwheel event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Element} this
      */
     onWheel(fun) {
         this.#elem.onwheel = event => fun(event);
@@ -258,7 +258,7 @@ export class Element {
 
     /**
      * Horizontally centers this element. 
-     * @returns this
+     * @returns {Element} this
      */
     center() {
         this.#elem.style.margin = "auto";
@@ -268,7 +268,7 @@ export class Element {
     /**
      * Sets z-index property.
      * @param {number} z 
-     * @returns this
+     * @returns {Element} this
      */
     zIndex(z) {
         this.#elem.style.zIndex = z;
@@ -278,7 +278,7 @@ export class Element {
     /**
      * Sets CSS display property.
      * @param {string} d 
-     * @returns this
+     * @returns {Element} this
      */
     display(d) {
         this.#elem.style.display = d;
@@ -288,7 +288,7 @@ export class Element {
     /**
      * Sets CSS max width property.
      * @param {string} mw 
-     * @returns this
+     * @returns {Element} this
      */
     maxWidth(mw) {
         this.#elem.style.maxWidth = mw;
@@ -298,7 +298,7 @@ export class Element {
     /**
      * Sets CSS min width property.
      * @param {string} mw 
-     * @returns this
+     * @returns {Element} this
      */
     minWidth(mw) {
         this.#elem.style.minWidth = mw;
@@ -308,7 +308,7 @@ export class Element {
     /**
      * Sets CSS max height property.
      * @param {string} mh 
-     * @returns this
+     * @returns {Element} this
      */
     maxHeight(mh) {
         this.#elem.style.maxHeight = mh;
@@ -318,7 +318,7 @@ export class Element {
     /**
      * Sets CSS min height property.
      * @param {string} mh 
-     * @returns this
+     * @returns {Element} this
      */
     minHeight(mh) {
         this.#elem.style.minHeight = mh;
@@ -335,7 +335,7 @@ export class Element {
     /**
      * Binds a function for the onmouseover event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Element} this
      */
     onMouseOver(fun) {
         this.#elem.onmouseover = event => fun(event);
@@ -345,7 +345,7 @@ export class Element {
     /**
      * Binds a function for the onmouseleave event.
      * @param {function} fun 
-     * @returns this
+     * @returns {Element} this
      */
     onMouseLeave(fun) {
         this.#elem.onmouseleave = event => fun(event);
@@ -362,7 +362,7 @@ export class Element {
      * @param {string} direction 
      * @param {string} fillMode 
      * @param {string} playState 
-     * @returns this
+     * @returns {Element} this
      */
     addAnimation(name, duration, timingFunction, delay, iterationCount, direction, fillMode, playState) {
         const animation = `${name ? name : ""} ${duration ? duration : ""} ${timingFunction ? timingFunction : ""} ${delay ? delay : ""} ${iterationCount ? iterationCount : ""} ${direction ? direction : ""} ${fillMode ? fillMode : ""} ${playState ? playState : ""}`;
@@ -381,7 +381,7 @@ export class Element {
      * @param {string} duration 
      * @param {string} timingFunction 
      * @param {string} delay 
-     * @returns this
+     * @returns {Element} this
      */
     addTransition(property, duration, timingFunction, delay) {
         const transition = `${property} ${duration} ${timingFunction ? timingFunction : ""} ${delay ? delay : ""}`;
