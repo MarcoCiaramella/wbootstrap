@@ -34,4 +34,4 @@ then you can append child to this body. For example
 ```javascript
 body.appendChild(new FlexColumnFull(3));
 ```
-See public [documentation](https://github.com/MarcoCiaramella/wbootstrap/blob/main/index.js) for all supported HTML elements styled with bootstrap 5. Further samples will follow as soon as possible.
+See public [documentation](https://marcociaramella.github.io/wbootstrap/) for all supported HTML elements styled with bootstrap 5. Further samples will follow as soon as possible.
