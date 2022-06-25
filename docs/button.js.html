@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: button.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: button.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Element } from "./element";
+import { MaterialIcon } from "./icon";
+import { Text } from "./text";
+
+
+/**
+ * The button element.
+ */
+class Button extends Element {
+
+    /**
+     * 
+     * @param {string} type one of available button types
+     */
+    constructor(type) {
+        super("button");
+        this.addClasses("btn");
+        this.elem.type = type;
+    }
+
+    /**
+     * Disable button.
+     * @returns {Button} this
+     */
+    disable() {
+        this.elem.disabled = true;
+        return this;
+    }
+
+    /**
+     * Enable button.
+     * @returns {Button} this
+     */
+    enable() {
+        this.elem.disabled = false;
+        return this;
+    }
+
+    /**
+     * Replaces inner HTML with a loading spinner.
+     * @returns {string} replaced inner HTML
+     */
+    runSpinner() {
+        const oldInnerHTML = this.innerHTML;
+        this.innerHTML = '&lt;span class="spinner-border spinner-border-sm" role="status" aria-hidden="true">&lt;/span>Loading...';
+        return oldInnerHTML;
+    }
+
+    /**
+     * Binds a function for the onclick event.
+     * @param {function} fun 
+     * @returns {Button} this
+     */
+    onClick(fun) {
+        this.cursor("pointer");
+        this.elem.onclick = async () => {
+            this.disable();
+            const oldInnerHTML = this.runSpinner();
+            await fun(this);
+            this.innerHTML = oldInnerHTML;
+            this.enable();
+        };
+        return this;
+    }
+
+    #class(cls, outline) {
+        this.addClasses(`btn-${outline ? "outline-" : ""}${cls}`);
+    }
+
+    /**
+     * Sets as primary button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns {Button} this
+     */
+    asPrimary(outline) {
+        this.#class("primary", outline);
+        return this
+    }
+
+    /**
+     * Sets as secondary button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns {Button} this
+     */
+    asSecondary(outline) {
+        this.#class("secondary", outline);
+        return this
+    }
+
+    /**
+     * Sets as success button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns {Button} this
+     */
+    asSuccess(outline) {
+        this.#class("success", outline);
+        return this
+    }
+
+    /**
+     * Sets as danger button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns {Button} this
+     */
+    asDanger(outline) {
+        this.#class("danger", outline);
+        return this
+    }
+
+    /**
+     * Sets as warning button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns {Button} this
+     */
+    asWarning(outline) {
+        this.#class("warning", outline);
+        return this
+    }
+
+    /**
+     * Sets as info button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns {Button} this
+     */
+    asInfo(outline) {
+        this.#class("info", outline);
+        return this
+    }
+
+    /**
+     * Sets as light button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns {Button} this
+     */
+    asLight(outline) {
+        this.#class("light", outline);
+        return this
+    }
+
+    /**
+     * Sets as dark button.
+     * @param {boolean | null} outline specifies outline mode
+     * @returns {Button} this
+     */
+    asDark(outline) {
+        this.#class("dark", outline);
+        return this
+    }
+
+    /**
+     * Sets as link button.
+     * @returns {Button} this
+     */
+    asLink() {
+        this.#class("link", outline);
+        return this
+    }
+}
+
+/**
+ * The simple button element.
+ */
+export class SimpleButton extends Button {
+
+    /**
+     * 
+     * @param {string} type one of available button types
+     * @param {string} img image src
+     * @param {string} text inner text
+     */
+    constructor(type, img, text) {
+        super(type);
+        img &amp;&amp; this.appendChild(img);
+        text &amp;&amp; this.appendChild(new Text("i", text));
+    }
+}
+
+/**
+ * The material icon button element.
+ */
+export class IconButton extends Button {
+
+    /**
+     * 
+     * @param {string} type one of available button types
+     * @param {string} iconName Material icon name
+     * @param {string} text inner text
+     */
+    constructor(type, iconName, text) {
+        super(type);
+        iconName &amp;&amp; this.appendChild(new MaterialIcon(iconName));
+        text &amp;&amp; this.appendChild(new Text("i", text));
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Body.html">Body</a></li><li><a href="Button.html">Button</a></li><li><a href="Card.html">Card</a></li><li><a href="CardBody.html">CardBody</a></li><li><a href="CardFooter.html">CardFooter</a></li><li><a href="CardHeader.html">CardHeader</a></li><li><a href="CardImg.html">CardImg</a></li><li><a href="Container.html">Container</a></li><li><a href="ContainerFluid.html">ContainerFluid</a></li><li><a href="Div.html">Div</a></li><li><a href="Dropdown.html">Dropdown</a></li><li><a href="Dropzone.html">Dropzone</a></li><li><a href="Element.html">Element</a></li><li><a href="Flex.html">Flex</a></li><li><a href="FlexColumn.html">FlexColumn</a></li><li><a href="FlexColumnFull.html">FlexColumnFull</a></li><li><a href="FlexRow.html">FlexRow</a></li><li><a href="FlexRowFull.html">FlexRowFull</a></li><li><a href="Form.html">Form</a></li><li><a href="FormInput.html">FormInput</a></li><li><a href="FormItem.html">FormItem</a></li><li><a href="FormSelect.html">FormSelect</a></li><li><a href="FormTextarea.html">FormTextarea</a></li><li><a href="Grid.html">Grid</a></li><li><a href="Grid2.html">Grid2</a></li><li><a href="Grid2Fluid.html">Grid2Fluid</a></li><li><a href="Grid3.html">Grid3</a></li><li><a href="Grid3Fluid.html">Grid3Fluid</a></li><li><a href="Grid4.html">Grid4</a></li><li><a href="Grid4Fluid.html">Grid4Fluid</a></li><li><a href="Grid6.html">Grid6</a></li><li><a href="Grid6Fluid.html">Grid6Fluid</a></li><li><a href="GridFluid.html">GridFluid</a></li><li><a href="GridItem.html">GridItem</a></li><li><a href="GridRow.html">GridRow</a></li><li><a href="GridX.html">GridX</a></li><li><a href="GridXFluid.html">GridXFluid</a></li><li><a href="IconButton.html">IconButton</a></li><li><a href="Img.html">Img</a></li><li><a href="Input.html">Input</a></li><li><a href="Label.html">Label</a></li><li><a href="Link.html">Link</a></li><li><a href="MaterialIcon.html">MaterialIcon</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="Select.html">Select</a></li><li><a href="SimpleButton.html">SimpleButton</a></li><li><a href="Span.html">Span</a></li><li><a href="Switch.html">Switch</a></li><li><a href="Text.html">Text</a></li><li><a href="Textarea.html">Textarea</a></li><li><a href="UList.html">UList</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Sat Jun 25 2022 10:33:13 GMT+0200 (Ora legale dell’Europa centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

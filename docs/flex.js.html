@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: flex.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: flex.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+The Flexbox Layout (Flexible Box) module (a W3C Candidate Recommendation as of October 2017) aims at providing
+a more efficient way to lay out, align and distribute space among items in a container,
+even when their size is unknown and/or dynamic (thus the word “flex”).
+The main idea behind the flex layout is to give the container the ability to alter
+its items’ width/height (and order) to best fill the available space (mostly to accommodate to all kind
+of display devices and screen sizes). A flex container expands items to fill available free space or shrinks them to prevent overflow.
+Most importantly, the flexbox layout is direction-agnostic as opposed to the regular layouts (block which is vertically-based and inline which is horizontally-based).
+*/
+
+import { Element } from "./element";
+
+/**
+ * Flex element.
+ */
+class Flex extends Element {
+
+    /**
+     * 
+     * @param {number} gap gap between elements
+     */
+    constructor(gap) {
+        super("div");
+        this.addClasses("d-flex", `gap-${gap}`);
+    }
+
+    /**
+     * Sets the justify content type.
+     * @param {string} type one of the supported bootstrap values
+     * @returns {Flex} this
+     */
+    justifyContent(type) {
+        this.addClasses(`justify-content-${type}`);
+        return this;
+    }
+
+    /**
+     * Sets the align items type.
+     * @param {string} type one of the supported bootstrap values
+     * @returns {Flex} this
+     */
+    alignItems(type) {
+        this.addClasses(`align-items-${type}`);
+        return this;
+    }
+}
+
+/**
+ * Flex column element.
+ */
+export class FlexColumn extends Flex {
+
+    /**
+     * 
+     * @param {number} gap gap between elements
+     */
+    constructor(gap) {
+        super(gap);
+        this.addClasses("flex-column");
+    }
+}
+
+/**
+ * Flex row element.
+ */
+export class FlexRow extends Flex {
+
+    /**
+     * 
+     * @param {number} gap gap between elements
+     */
+    constructor(gap) {
+        super(gap);
+        this.addClasses("flex-row", "flex-wrap");
+    }
+}
+
+/**
+ * Flex column element with full (100%) height.
+ */
+export class FlexColumnFull extends FlexColumn {
+
+    /**
+     * 
+     * @param {number} gap gap between elements
+     */
+    constructor(gap) {
+        super(gap);
+        this.addClasses("min-vh-100");
+    }
+}
+
+/**
+ * Flex row element with full (100%) width.
+ */
+export class FlexRowFull extends FlexRow {
+
+    constructor(gap) {
+        super(gap);
+        this.addClasses("min-vw-100");
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Body.html">Body</a></li><li><a href="Button.html">Button</a></li><li><a href="Card.html">Card</a></li><li><a href="CardBody.html">CardBody</a></li><li><a href="CardFooter.html">CardFooter</a></li><li><a href="CardHeader.html">CardHeader</a></li><li><a href="CardImg.html">CardImg</a></li><li><a href="Container.html">Container</a></li><li><a href="ContainerFluid.html">ContainerFluid</a></li><li><a href="Div.html">Div</a></li><li><a href="Dropdown.html">Dropdown</a></li><li><a href="Dropzone.html">Dropzone</a></li><li><a href="Element.html">Element</a></li><li><a href="Flex.html">Flex</a></li><li><a href="FlexColumn.html">FlexColumn</a></li><li><a href="FlexColumnFull.html">FlexColumnFull</a></li><li><a href="FlexRow.html">FlexRow</a></li><li><a href="FlexRowFull.html">FlexRowFull</a></li><li><a href="Form.html">Form</a></li><li><a href="FormInput.html">FormInput</a></li><li><a href="FormItem.html">FormItem</a></li><li><a href="FormSelect.html">FormSelect</a></li><li><a href="FormTextarea.html">FormTextarea</a></li><li><a href="Grid.html">Grid</a></li><li><a href="Grid2.html">Grid2</a></li><li><a href="Grid2Fluid.html">Grid2Fluid</a></li><li><a href="Grid3.html">Grid3</a></li><li><a href="Grid3Fluid.html">Grid3Fluid</a></li><li><a href="Grid4.html">Grid4</a></li><li><a href="Grid4Fluid.html">Grid4Fluid</a></li><li><a href="Grid6.html">Grid6</a></li><li><a href="Grid6Fluid.html">Grid6Fluid</a></li><li><a href="GridFluid.html">GridFluid</a></li><li><a href="GridItem.html">GridItem</a></li><li><a href="GridRow.html">GridRow</a></li><li><a href="GridX.html">GridX</a></li><li><a href="GridXFluid.html">GridXFluid</a></li><li><a href="IconButton.html">IconButton</a></li><li><a href="Img.html">Img</a></li><li><a href="Input.html">Input</a></li><li><a href="Label.html">Label</a></li><li><a href="Link.html">Link</a></li><li><a href="MaterialIcon.html">MaterialIcon</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="Select.html">Select</a></li><li><a href="SimpleButton.html">SimpleButton</a></li><li><a href="Span.html">Span</a></li><li><a href="Switch.html">Switch</a></li><li><a href="Text.html">Text</a></li><li><a href="Textarea.html">Textarea</a></li><li><a href="UList.html">UList</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Sat Jun 25 2022 10:33:13 GMT+0200 (Ora legale dell’Europa centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
