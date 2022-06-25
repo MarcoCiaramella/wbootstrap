@@ -8,7 +8,7 @@ export class Input extends Element {
     /**
      * 
      * @param {string} type one of HTML input type
-     * @param {st\ring} placeholder 
+     * @param {string} placeholder 
      * @param {string | number} minLength min number of characters
      * @param {string | number} maxLength max number of characters
      */
