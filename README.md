@@ -1,6 +1,10 @@
 # wbootstrap
 wboostrap is a minimal wrapper for DOM based on Bootstrap and Google Material.
-## How to use
+## Install
+```
+npm i @marco_ciaramella/wbootstrap
+```
+## Usage
 Create an html page like this
 ```html
 <!DOCTYPE html>
@@ -34,6 +38,6 @@ then you can append child to this body. For example
 ```javascript
 body.appendChild(new FlexColumnFull(3));
 ```
-Each HTML element defined in this module is a subclass of [Element](https://marcociaramella.github.io/wbootstrap/Element.html). If you want to add custom element or a new one you should extend Element class or one of his subclasses.
+Each HTML element defined in this module is a subclass of [Element](https://marcociaramella.github.io/wbootstrap/Element.html). If you want to add a custom element or a new one you should extend Element class or one of his subclasses.
 
 See public [documentation](https://marcociaramella.github.io/wbootstrap/) for all supported HTML elements styled with bootstrap 5. Further samples will follow as soon as possible.
