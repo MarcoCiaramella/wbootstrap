@@ -171,7 +171,7 @@ export class SimpleButton extends Button {
     constructor(type, img, text) {
         super(type);
         img && this.appendChild(img);
-        text && this.appendChild(new Text("i", text));
+        text && this.appendChild(new Text("p", text));
     }
 }
 
@@ -189,6 +189,6 @@ export class IconButton extends Button {
     constructor(type, iconName, text) {
         super(type);
         iconName && this.appendChild(new MaterialIcon(iconName));
-        text && this.appendChild(new Text("i", text));
+        text && this.appendChild(new Text("p", text));
     }
 }
