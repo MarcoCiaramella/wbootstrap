@@ -77,6 +77,7 @@ export class GridXFluid extends ContainerFluid {
     constructor(spacing) {
         super();
         this.#row = new GridRow(spacing);
+        this.appendChild(this.#row);
     }
 
     /**
@@ -161,6 +162,7 @@ export class GridX extends Container {
     constructor(spacing) {
         super();
         this.#row = new GridRow(spacing);
+        this.appendChild(this.#row);
     }
 
     /**
