@@ -4,16 +4,16 @@ import { Element } from "./element";
 /**
  * Wrapper for grid item.
  */
-export class GridItem extends Element {
+class GridItem extends Element {
 
     /**
      * 
      * @param {Element} elem the grid element
-     * @param {string | number} size size in terms of col (col-"size")
+     * @param {string | number | null} size size in terms of col (col-"size")
      */
     constructor(elem, size) {
         super("div");
-        this.addClasses("col" + (size ? `-${size}` : ""));
+        this.addClasses(size ? `col-${size}` : "col");
         this.appendChild(elem);
     }
 }
@@ -21,7 +21,7 @@ export class GridItem extends Element {
 /**
  * Grid row element.
  */
-export class GridRow extends Element {
+class GridRow extends Element {
 
     /**
      * 
@@ -67,7 +67,7 @@ export class GridRow extends Element {
 /**
  * A grid with 100% width at all breakpoints.
  */
-export class GridFluid extends ContainerFluid {
+class GridFluid extends ContainerFluid {
 
     #rows;
 
@@ -106,10 +106,13 @@ export class GridXFluid extends GridFluid {
     }
 
     /**
-     * Gets inner row.
+     * Adds an Element.
+     * @param {Element} elem 
+     * @returns {GridXFluid} this
      */
-    get row() {
-        return this.rows[0];
+    add(elem) {
+        this.rows[0].add(new GridItem(elem));
+        return this;
     }
 }
 
@@ -176,7 +179,7 @@ export class Grid3Fluid extends GridXFluid {
 /**
  * A grid with max-width at each responsive breakpoint.
  */
-export class Grid extends Container {
+class Grid extends Container {
 
     #rows;
 
@@ -215,10 +218,13 @@ export class GridX extends Grid {
     }
 
     /**
-     * Gets inner row.
+     * Adds an Element.
+     * @param {Element} elem 
+     * @returns {GridX} this
      */
-    get row() {
-        return this.rows[0];
+    add(elem) {
+        this.rows[0].add(new GridItem(elem));
+        return this;
     }
 }
 
