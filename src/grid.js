@@ -4,16 +4,15 @@ import { Element } from "./element";
 /**
  * Wrapper for grid item.
  */
-class GridItem extends Element {
+export class GridItem extends Element {
 
     /**
      * 
      * @param {Element} elem the grid element
-     * @param {string | number | null} size size in terms of col (col-"size")
      */
-    constructor(elem, size) {
+    constructor(elem) {
         super("div");
-        this.addClasses(size ? `col-${size}` : "col");
+        this.addClasses("col");
         this.appendChild(elem);
     }
 }
@@ -65,54 +64,26 @@ class GridRow extends Element {
 }
 
 /**
- * A grid with 100% width at all breakpoints.
- */
-class GridFluid extends ContainerFluid {
-
-    #rows;
-
-    /**
-     * 
-     * @param {GridRow[]} rows 
-     */
-    constructor(rows) {
-        super();
-        rows.forEach(row => {
-            this.appendChild(row);
-        });
-        this.#rows = rows;
-    }
-
-    /**
-     * Gets rows.
-     */
-    get rows() {
-        return this.#rows;
-    }
-
-}
-
-/**
  * A grid with 100% width at all breakpoints with x GridItem per row.
  */
-export class GridXFluid extends GridFluid {
+export class GridXFluid extends ContainerFluid {
+
+    #row
 
     /**
      * 
      * @param {string | number} spacing spacing between GridItem
      */
     constructor(spacing) {
-        super([new GridRow(spacing)]);
+        super();
+        this.#row = new GridRow(spacing);
     }
 
     /**
-     * Adds an Element.
-     * @param {Element} elem 
-     * @returns {GridXFluid} this
+     * Gets inner row.
      */
-    add(elem) {
-        this.rows[0].add(new GridItem(elem));
-        return this;
+    get row() {
+        return this.#row;
     }
 }
 
@@ -177,54 +148,26 @@ export class Grid3Fluid extends GridXFluid {
 }
 
 /**
- * A grid with max-width at each responsive breakpoint.
- */
-class Grid extends Container {
-
-    #rows;
-
-    /**
-     * 
-     * @param {GridRow[]} rows 
-     */
-    constructor(rows) {
-        super();
-        rows.forEach(row => {
-            this.appendChild(row);
-        });
-        this.#rows = rows;
-    }
-
-    /**
-     * Gets rows.
-     */
-    get rows() {
-        return this.#rows;
-    }
-
-}
-
-/**
  * A grid with max-width at each responsive breakpoint with x GridItem per row.
  */
-export class GridX extends Grid {
+export class GridX extends Container {
+
+    #row;
 
     /**
      * 
      * @param {string | number} spacing spacing between GridItem
      */
     constructor(spacing) {
-        super([new GridRow(spacing)]);
+        super();
+        this.#row = new GridRow(spacing);
     }
 
     /**
-     * Adds an Element.
-     * @param {Element} elem 
-     * @returns {GridX} this
+     * Gets inner row.
      */
-    add(elem) {
-        this.rows[0].add(new GridItem(elem));
-        return this;
+    get row() {
+        return this.#row;
     }
 }
 
