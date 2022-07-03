@@ -167,10 +167,9 @@ export class FormSelect extends FormItem {
     /**
      * 
      * @param {string} label as HTML code
-     * @param {boolean} required required true/false
      * @param {string[]} options 
      */
-    constructor(label, required, options) {
+    constructor(label, options) {
         super(label, new Select(options));
     }
 
