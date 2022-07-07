@@ -150,7 +150,7 @@ export class Element {
     /**
      * Replaces oldChild with newChild.
      * @param {Element} newChild 
-     * @param {Element} [oldChild] optional. If not defined newChild will be appended
+     * @param {Element | null} [oldChild] optional. If not defined newChild will be appended
      * @returns {Element} this
      */
     replaceChild(newChild, oldChild) {
