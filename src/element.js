@@ -7,6 +7,7 @@ export class Element {
     #elem;
     #update;
     #interval;
+    #parent;
     static id = 0;
 
     /**
@@ -31,8 +32,25 @@ export class Element {
      * @returns {Element} this
      */
     appendChild(child) {
-        child && this.#elem.appendChild(child.elem);
+        if (child) {
+            child.parent = this;
+            this.#elem.appendChild(child.elem);
+        }
         return this;
+    }
+
+    /**
+     * Sets element's parent.
+     */
+    set parent(parent) {
+        this.#parent = parent;
+    }
+
+    /**
+     * Gets element's parent.
+     */
+    get parent() {
+        return this.#parent;
     }
 
     /**

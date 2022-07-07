@@ -64,6 +64,12 @@ export class CardImg extends Img {
  */
 export class Card extends Element {
 
+    #header;
+    #img;
+    #body;
+    #footer;
+
+
     /**
      * 
      * @param {CardHeader} header 
@@ -82,5 +88,37 @@ export class Card extends Element {
         img && this.appendChild(img);
         body && this.appendChild(body);
         footer && this.appendChild(footer);
+        this.#header = header;
+        this.#img = img;
+        this.#body = body;
+        this.#footer = footer;
+    }
+
+    /**
+     * Gets header.
+     */
+    get header() {
+        return this.#header;
+    }
+
+    /**
+     * Gets img.
+     */
+    get img() {
+        return this.#img;
+    }
+
+    /**
+     * Gets body.
+     */
+    get body() {
+        return this.#body;
+    }
+
+    /**
+     * Gets footer.
+     */
+    get footer() {
+        return this.#footer;
     }
 }
