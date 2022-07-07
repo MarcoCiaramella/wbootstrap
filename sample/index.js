@@ -1,5 +1,5 @@
 import { Body } from "../src/body";
-import { Grid4Fluid, GridItem } from "../src/grid";
+import { GridItem, GridFluid } from "../src/grid";
 import { Card, CardHeader, CardBody, CardFooter } from "../src/card";
 
 function newCard() {
@@ -7,7 +7,7 @@ function newCard() {
 }
 
 new Body()
-    .appendChild(new Grid4Fluid(3).row
+    .appendChild(new GridFluid(3, 1, 2, 3, 4, 5, 6).row
         .add(new GridItem(newCard()))
         .add(new GridItem(newCard()))
         .add(new GridItem(newCard()))

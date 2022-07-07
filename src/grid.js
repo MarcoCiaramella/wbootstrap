@@ -64,19 +64,25 @@ class GridRow extends Element {
 }
 
 /**
- * A grid with 100% width at all breakpoints with x GridItem per row.
+ * A grid with 100% width at all breakpoints.
  */
-export class GridXFluid extends ContainerFluid {
+export class GridFluid extends ContainerFluid {
 
     #row
 
     /**
      * 
      * @param {string | number} spacing spacing between GridItem
+     * @param {string | number} xs number of GridItem per row on xs breakpoint
+     * @param {string | number} sm number of GridItem per row on sm breakpoint
+     * @param {string | number} md number of GridItem per row on md breakpoint
+     * @param {string | number} lg number of GridItem per row on lg breakpoint
+     * @param {string | number} xl number of GridItem per row on xl breakpoint
+     * @param {string | number} xxl number of GridItem per row on xxl breakpoint
      */
-    constructor(spacing) {
+    constructor(spacing, xs, sm, md, lg, xl, xxl) {
         super();
-        this.#row = new GridRow(spacing);
+        this.#row = new GridRow(spacing).addClasses(`row-cols-${xs}`, `row-cols-sm-${sm}`, `row-cols-md-${md}`, `row-cols-lg-${lg}`, `row-cols-xl-${xl}`, `row-cols-xxl-${xxl}`);
         this.appendChild(this.#row);
     }
 
@@ -89,79 +95,25 @@ export class GridXFluid extends ContainerFluid {
 }
 
 /**
- * A grid with 100% width at all breakpoints with 6 GridItem per row.
+ * A grid with max-width at each responsive breakpoint.
  */
-export class Grid6Fluid extends GridXFluid {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-4", "row-cols-xl-6", "row-cols-xxl-6");
-    }
-}
-
-/**
- * A grid with 100% width at all breakpoints with 2 GridItem per row.
- */
-export class Grid2Fluid extends GridXFluid {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-2", "row-cols-lg-2", "row-cols-xl-2", "row-cols-xxl-2");
-    }
-}
-
-/**
- * A grid with 100% width at all breakpoints with 4 GridItem per row.
- */
-export class Grid4Fluid extends GridXFluid {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-2", "row-cols-lg-4", "row-cols-xl-4", "row-cols-xxl-4");
-    }
-}
-
-/**
- * A grid with 100% width at all breakpoints with 3 GridItem per row.
- */
-export class Grid3Fluid extends GridXFluid {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-3", "row-cols-md-3", "row-cols-lg-3", "row-cols-xl-3", "row-cols-xxl-3");
-    }
-}
-
-/**
- * A grid with max-width at each responsive breakpoint with x GridItem per row.
- */
-export class GridX extends Container {
+export class Grid extends Container {
 
     #row;
 
     /**
      * 
      * @param {string | number} spacing spacing between GridItem
+     * @param {string | number} xs number of GridItem per row on xs breakpoint
+     * @param {string | number} sm number of GridItem per row on sm breakpoint
+     * @param {string | number} md number of GridItem per row on md breakpoint
+     * @param {string | number} lg number of GridItem per row on lg breakpoint
+     * @param {string | number} xl number of GridItem per row on xl breakpoint
+     * @param {string | number} xxl number of GridItem per row on xxl breakpoint
      */
-    constructor(spacing) {
+    constructor(spacing, xs, sm, md, lg, xl, xxl) {
         super();
-        this.#row = new GridRow(spacing);
+        this.#row = new GridRow(spacing).addClasses(`row-cols-${xs}`, `row-cols-sm-${sm}`, `row-cols-md-${md}`, `row-cols-lg-${lg}`, `row-cols-xl-${xl}`, `row-cols-xxl-${xxl}`);
         this.appendChild(this.#row);
     }
 
@@ -170,65 +122,5 @@ export class GridX extends Container {
      */
     get row() {
         return this.#row;
-    }
-}
-
-/**
- * A grid with max-width at each responsive breakpoint with 6 GridItem per row.
- */
-export class Grid6 extends GridX {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-4", "row-cols-xl-6", "row-cols-xxl-6");
-    }
-}
-
-/**
- * A grid with max-width at each responsive breakpoint with 2 GridItem per row.
- */
-export class Grid2 extends GridX {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-2", "row-cols-lg-2", "row-cols-xl-2", "row-cols-xxl-2");
-    }
-}
-
-/**
- * A grid with max-width at each responsive breakpoint with 4 GridItem per row.
- */
-export class Grid4 extends GridX {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-2", "row-cols-lg-4", "row-cols-xl-4", "row-cols-xxl-4");
-    }
-}
-
-/**
- * A grid with max-width at each responsive breakpoint with 3 GridItem per row.
- */
-export class Grid3 extends GridX {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-3", "row-cols-md-3", "row-cols-lg-3", "row-cols-xl-3", "row-cols-xxl-3");
     }
 }

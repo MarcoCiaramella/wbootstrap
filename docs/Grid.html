@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: SearchBar</title>
+    <title>JSDoc: Class: Grid</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: SearchBar</h1>
+    <h1 class="page-title">Class: Grid</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>SearchBar<span class="signature">(placeholder, onEnter)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Grid<span class="signature">(spacing, xs, sm, md, lg, xl, xxl)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Search bar element.</div>
+            <div class="class-description">A grid with max-width at each responsive breakpoint.</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="SearchBar"><span class="type-signature"></span>new SearchBar<span class="signature">(placeholder, onEnter)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Grid"><span class="type-signature"></span>new Grid<span class="signature">(spacing, xs, sm, md, lg, xl, xxl)</span><span class="type-signature"></span></h4>
     
 
     
@@ -85,13 +85,16 @@
 
         <tr>
             
-                <td class="name"><code>placeholder</code></td>
+                <td class="name"><code>spacing</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -101,20 +104,23 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">spacing between GridItem</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>onEnter</code></td>
+                <td class="name"><code>xs</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -124,7 +130,137 @@
 
             
 
-            <td class="description last">function called when key "Enter" is pressed</td>
+            <td class="description last">number of GridItem per row on xs breakpoint</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sm</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">number of GridItem per row on sm breakpoint</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>md</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">number of GridItem per row on md breakpoint</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">number of GridItem per row on lg breakpoint</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>xl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">number of GridItem per row on xl breakpoint</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>xxl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">number of GridItem per row on xxl breakpoint</td>
         </tr>
 
     
@@ -165,7 +301,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="search.js.html">search.js</a>, <a href="search.js.html#line7">line 7</a>
+        <a href="grid.js.html">grid.js</a>, <a href="grid.js.html#line100">line 100</a>
     </li></ul></dd>
     
 
@@ -206,7 +342,7 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="SearchBar.html">SearchBar</a></dt>
+            <dt><a href="Grid.html">Grid</a></dt>
             <dd></dd>
         </dl>
     
@@ -222,13 +358,13 @@
 
         
             
-<h4 class="name" id="value"><span class="type-signature"></span>value<span class="type-signature"></span></h4>
+<h4 class="name" id="row"><span class="type-signature"></span>row<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    Gets search string.
+    Gets inner row.
 </div>
 
 
@@ -266,7 +402,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="search.js.html">search.js</a>, <a href="search.js.html#line35">line 35</a>
+        <a href="grid.js.html">grid.js</a>, <a href="grid.js.html#line123">line 123</a>
     </li></ul></dd>
     
 

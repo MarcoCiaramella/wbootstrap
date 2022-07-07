@@ -92,19 +92,25 @@ class GridRow extends Element {
 }
 
 /**
- * A grid with 100% width at all breakpoints with x GridItem per row.
+ * A grid with 100% width at all breakpoints.
  */
-export class GridXFluid extends ContainerFluid {
+export class GridFluid extends ContainerFluid {
 
     #row
 
     /**
      * 
      * @param {string | number} spacing spacing between GridItem
+     * @param {string | number} xs number of GridItem per row on xs breakpoint
+     * @param {string | number} sm number of GridItem per row on sm breakpoint
+     * @param {string | number} md number of GridItem per row on md breakpoint
+     * @param {string | number} lg number of GridItem per row on lg breakpoint
+     * @param {string | number} xl number of GridItem per row on xl breakpoint
+     * @param {string | number} xxl number of GridItem per row on xxl breakpoint
      */
-    constructor(spacing) {
+    constructor(spacing, xs, sm, md, lg, xl, xxl) {
         super();
-        this.#row = new GridRow(spacing);
+        this.#row = new GridRow(spacing).addClasses(`row-cols-${xs}`, `row-cols-sm-${sm}`, `row-cols-md-${md}`, `row-cols-lg-${lg}`, `row-cols-xl-${xl}`, `row-cols-xxl-${xxl}`);
         this.appendChild(this.#row);
     }
 
@@ -117,79 +123,25 @@ export class GridXFluid extends ContainerFluid {
 }
 
 /**
- * A grid with 100% width at all breakpoints with 6 GridItem per row.
+ * A grid with max-width at each responsive breakpoint.
  */
-export class Grid6Fluid extends GridXFluid {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-4", "row-cols-xl-5", "row-cols-xxl-6");
-    }
-}
-
-/**
- * A grid with 100% width at all breakpoints with 2 GridItem per row.
- */
-export class Grid2Fluid extends GridXFluid {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-2", "row-cols-lg-2", "row-cols-xl-2", "row-cols-xxl-2");
-    }
-}
-
-/**
- * A grid with 100% width at all breakpoints with 4 GridItem per row.
- */
-export class Grid4Fluid extends GridXFluid {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-4", "row-cols-xl-4", "row-cols-xxl-4");
-    }
-}
-
-/**
- * A grid with 100% width at all breakpoints with 3 GridItem per row.
- */
-export class Grid3Fluid extends GridXFluid {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-3", "row-cols-xl-3", "row-cols-xxl-3");
-    }
-}
-
-/**
- * A grid with max-width at each responsive breakpoint with x GridItem per row.
- */
-export class GridX extends Container {
+export class Grid extends Container {
 
     #row;
 
     /**
      * 
      * @param {string | number} spacing spacing between GridItem
+     * @param {string | number} xs number of GridItem per row on xs breakpoint
+     * @param {string | number} sm number of GridItem per row on sm breakpoint
+     * @param {string | number} md number of GridItem per row on md breakpoint
+     * @param {string | number} lg number of GridItem per row on lg breakpoint
+     * @param {string | number} xl number of GridItem per row on xl breakpoint
+     * @param {string | number} xxl number of GridItem per row on xxl breakpoint
      */
-    constructor(spacing) {
+    constructor(spacing, xs, sm, md, lg, xl, xxl) {
         super();
-        this.#row = new GridRow(spacing);
+        this.#row = new GridRow(spacing).addClasses(`row-cols-${xs}`, `row-cols-sm-${sm}`, `row-cols-md-${md}`, `row-cols-lg-${lg}`, `row-cols-xl-${xl}`, `row-cols-xxl-${xxl}`);
         this.appendChild(this.#row);
     }
 
@@ -198,66 +150,6 @@ export class GridX extends Container {
      */
     get row() {
         return this.#row;
-    }
-}
-
-/**
- * A grid with max-width at each responsive breakpoint with 6 GridItem per row.
- */
-export class Grid6 extends GridX {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-4", "row-cols-xl-5", "row-cols-xxl-6");
-    }
-}
-
-/**
- * A grid with max-width at each responsive breakpoint with 2 GridItem per row.
- */
-export class Grid2 extends GridX {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-2", "row-cols-lg-2", "row-cols-xl-2", "row-cols-xxl-2");
-    }
-}
-
-/**
- * A grid with max-width at each responsive breakpoint with 4 GridItem per row.
- */
-export class Grid4 extends GridX {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-4", "row-cols-xl-4", "row-cols-xxl-4");
-    }
-}
-
-/**
- * A grid with max-width at each responsive breakpoint with 3 GridItem per row.
- */
-export class Grid3 extends GridX {
-
-    /**
-     * 
-     * @param {string | number} spacing spacing between GridItem
-     */
-    constructor(spacing) {
-        super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-3", "row-cols-xl-3", "row-cols-xxl-3");
     }
 }</code></pre>
         </article>
@@ -269,13 +161,13 @@ export class Grid3 extends GridX {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Body.html">Body</a></li><li><a href="Button.html">Button</a></li><li><a href="Card.html">Card</a></li><li><a href="CardBody.html">CardBody</a></li><li><a href="CardFooter.html">CardFooter</a></li><li><a href="CardHeader.html">CardHeader</a></li><li><a href="CardImg.html">CardImg</a></li><li><a href="Container.html">Container</a></li><li><a href="ContainerFluid.html">ContainerFluid</a></li><li><a href="Div.html">Div</a></li><li><a href="Dropdown.html">Dropdown</a></li><li><a href="Dropzone.html">Dropzone</a></li><li><a href="Element.html">Element</a></li><li><a href="Flex.html">Flex</a></li><li><a href="FlexColumn.html">FlexColumn</a></li><li><a href="FlexColumnFull.html">FlexColumnFull</a></li><li><a href="FlexRow.html">FlexRow</a></li><li><a href="FlexRowFull.html">FlexRowFull</a></li><li><a href="Form.html">Form</a></li><li><a href="FormInput.html">FormInput</a></li><li><a href="FormItem.html">FormItem</a></li><li><a href="FormSelect.html">FormSelect</a></li><li><a href="FormTextarea.html">FormTextarea</a></li><li><a href="Grid2.html">Grid2</a></li><li><a href="Grid2Fluid.html">Grid2Fluid</a></li><li><a href="Grid3.html">Grid3</a></li><li><a href="Grid3Fluid.html">Grid3Fluid</a></li><li><a href="Grid4.html">Grid4</a></li><li><a href="Grid4Fluid.html">Grid4Fluid</a></li><li><a href="Grid6.html">Grid6</a></li><li><a href="Grid6Fluid.html">Grid6Fluid</a></li><li><a href="GridItem.html">GridItem</a></li><li><a href="GridRow.html">GridRow</a></li><li><a href="GridX.html">GridX</a></li><li><a href="GridXFluid.html">GridXFluid</a></li><li><a href="IconButton.html">IconButton</a></li><li><a href="Img.html">Img</a></li><li><a href="Input.html">Input</a></li><li><a href="Label.html">Label</a></li><li><a href="Link.html">Link</a></li><li><a href="MaterialIcon.html">MaterialIcon</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="Select.html">Select</a></li><li><a href="SimpleButton.html">SimpleButton</a></li><li><a href="Span.html">Span</a></li><li><a href="Switch.html">Switch</a></li><li><a href="Text.html">Text</a></li><li><a href="Textarea.html">Textarea</a></li><li><a href="UList.html">UList</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Body.html">Body</a></li><li><a href="Button.html">Button</a></li><li><a href="Card.html">Card</a></li><li><a href="CardBody.html">CardBody</a></li><li><a href="CardFooter.html">CardFooter</a></li><li><a href="CardHeader.html">CardHeader</a></li><li><a href="CardImg.html">CardImg</a></li><li><a href="Container.html">Container</a></li><li><a href="ContainerFluid.html">ContainerFluid</a></li><li><a href="Div.html">Div</a></li><li><a href="Dropdown.html">Dropdown</a></li><li><a href="Dropzone.html">Dropzone</a></li><li><a href="Element.html">Element</a></li><li><a href="Flex.html">Flex</a></li><li><a href="FlexColumn.html">FlexColumn</a></li><li><a href="FlexColumnFull.html">FlexColumnFull</a></li><li><a href="FlexRow.html">FlexRow</a></li><li><a href="FlexRowFull.html">FlexRowFull</a></li><li><a href="Form.html">Form</a></li><li><a href="FormInput.html">FormInput</a></li><li><a href="FormItem.html">FormItem</a></li><li><a href="FormSelect.html">FormSelect</a></li><li><a href="FormTextarea.html">FormTextarea</a></li><li><a href="Grid.html">Grid</a></li><li><a href="GridFluid.html">GridFluid</a></li><li><a href="GridItem.html">GridItem</a></li><li><a href="GridRow.html">GridRow</a></li><li><a href="IconButton.html">IconButton</a></li><li><a href="Img.html">Img</a></li><li><a href="Input.html">Input</a></li><li><a href="Label.html">Label</a></li><li><a href="Link.html">Link</a></li><li><a href="MaterialIcon.html">MaterialIcon</a></li><li><a href="SearchBar.html">SearchBar</a></li><li><a href="Select.html">Select</a></li><li><a href="SimpleButton.html">SimpleButton</a></li><li><a href="Span.html">Span</a></li><li><a href="Switch.html">Switch</a></li><li><a href="Text.html">Text</a></li><li><a href="Textarea.html">Textarea</a></li><li><a href="UList.html">UList</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Sun Jul 03 2022 22:09:42 GMT+0200 (Ora legale dell’Europa centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Thu Jul 07 2022 16:48:30 GMT+0200 (Ora legale dell’Europa centrale)
 </footer>
 
 <script> prettyPrint(); </script>
