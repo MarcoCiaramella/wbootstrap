@@ -99,7 +99,7 @@ export class Grid6Fluid extends GridXFluid {
      */
     constructor(spacing) {
         super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-3", "row-cols-xl-6", "row-cols-xxl-6");
+        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-4", "row-cols-xl-6", "row-cols-xxl-6");
     }
 }
 
@@ -184,7 +184,7 @@ export class Grid6 extends GridX {
      */
     constructor(spacing) {
         super(spacing);
-        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-3", "row-cols-xl-6", "row-cols-xxl-6");
+        this.row.addClasses("row-cols-1", "row-cols-sm-2", "row-cols-md-3", "row-cols-lg-4", "row-cols-xl-6", "row-cols-xxl-6");
     }
 }
 
