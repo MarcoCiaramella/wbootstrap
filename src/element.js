@@ -154,6 +154,7 @@ export class Element {
      * @returns {Element} this
      */
     replaceChild(newChild, oldChild) {
+        newChild.parent = this;
         this.#elem.replaceChild(newChild.elem, oldChild.elem);
         return this;
     }
