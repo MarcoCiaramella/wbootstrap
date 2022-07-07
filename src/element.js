@@ -150,12 +150,17 @@ export class Element {
     /**
      * Replaces oldChild with newChild.
      * @param {Element} newChild 
-     * @param {Element} oldChild 
+     * @param {Element} [oldChild] optional. If not defined newChild will be appended
      * @returns {Element} this
      */
     replaceChild(newChild, oldChild) {
-        newChild.parent = this;
-        this.#elem.replaceChild(newChild.elem, oldChild.elem);
+        if (newChild && oldChild) {
+            newChild.parent = this;
+            this.#elem.replaceChild(newChild.elem, oldChild.elem);
+        }
+        else {
+            this.appendChild(newChild);
+        }
         return this;
     }
 
