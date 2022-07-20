@@ -254,4 +254,22 @@ export class Form extends Element {
             .onClick(button => fun(this)));
         return this;
     }
+
+    /**
+     * Disables form submission.
+     * @returns this
+     */
+    disable() {
+        this.#submitButton.disable();
+        return this;
+    }
+
+    /**
+     * Enables form submission.
+     * @returns this
+     */
+    enable() {
+        this.#submitButton.enable();
+        return this;
+    }
 }
