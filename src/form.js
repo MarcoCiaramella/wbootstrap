@@ -208,7 +208,7 @@ export class Form extends Element {
             this.#items.push(formItem);
             this.appendChild(formItem);
         });
-        this.elem.oninput = event => this.#submitButton.enable();
+        this.elem.oninput = event => this.enable();
         this.elem.noValidate = true;
         this.addClasses("needs-validation");
         this.appendChild(this.#submitButton);
@@ -228,15 +228,19 @@ export class Form extends Element {
      */
     onSubmit(fun) {
         this.elem.addEventListener('submit', async event => {
-            this.#submitButton.disable();
+            this.disable();
             const oldInnerHTML = this.#submitButton.runSpinner();
             event.preventDefault();
             event.stopPropagation();
             this.#items.forEach(item => item.clear().validate());
             this.addClasses('was-validated');
-            await fun(this.elem.checkValidity());
+            if (this.elem.checkValidity()) {
+                await fun(this);
+            }
+            else {
+                this.enable();
+            }
             this.#submitButton.innerHTML = oldInnerHTML;
-            this.#submitButton.enable();
         }, false);
         return this;
     }
