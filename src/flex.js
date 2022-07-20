@@ -95,6 +95,10 @@ export class FlexColumnFull extends FlexColumn {
  */
 export class FlexRowFull extends FlexRow {
 
+    /**
+     * 
+     * @param {number} gap gap between elements
+     */
     constructor(gap) {
         super(gap);
         this.addClasses("min-vw-100");
