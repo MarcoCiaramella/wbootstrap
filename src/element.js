@@ -226,12 +226,13 @@ export class Element {
     /**
      * Sets a background image in base64.
      * @param {string} imageBase64 
+     * @param {string} backgroundSize a CSS background-size property value
      * @returns {Element} this
      */
-    backgroundImage(imageBase64) {
+    backgroundImage(imageBase64, backgroundSize) {
         this.#elem.style.backgroundImage = `url(${imageBase64})`;
         this.#elem.style.backgroundRepeat = "no-repeat";
-        this.#elem.style.backgroundSize = "cover";
+        this.#elem.style.backgroundSize = backgroundSize;
         return this;
     }
 

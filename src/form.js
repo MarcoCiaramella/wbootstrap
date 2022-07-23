@@ -261,7 +261,7 @@ export class Form extends Element {
 
     /**
      * Disables form submission.
-     * @returns this
+     * @returns {Form} this
      */
     disable() {
         this.#submitButton.disable();
@@ -270,7 +270,7 @@ export class Form extends Element {
 
     /**
      * Enables form submission.
-     * @returns this
+     * @returns {Form} this
      */
     enable() {
         this.#submitButton.enable();
