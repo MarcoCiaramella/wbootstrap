@@ -8,11 +8,23 @@ export class Text extends Element {
     /**
      * 
      * @param {string} type one of HTML text element type
-     * @param {string} innerHTML 
+     * @param {string} text content in HTML format
      */
-    constructor(type, innerHTML) {
+    constructor(type, text) {
         // TODO add check on type
         super(type);
-        this.innerHTML = innerHTML;
+        this.innerHTML = text;
     }
+
+    /**
+     * Sets text.
+     * @param {string} text content in HTML format
+     * @returns {Text} this
+     */
+    setText(text) {
+        this.innerHTML = text;
+        return this;
+    }
+
+
 }
