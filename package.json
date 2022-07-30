@@ -1,6 +1,6 @@
 {
   "name": "@marco_ciaramella/wbootstrap",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "wrapper for DOM",
   "main": "index.js",
   "scripts": {
