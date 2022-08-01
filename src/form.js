@@ -191,27 +191,22 @@ export class Form extends Element {
 
     #items;
     #submitButton;
+    #cancelButton;
 
     /**
      * 
-     * @param {string} submitButtonContent submit button inner text
      * @param {...FormItem} formItems 
      */
-    constructor(submitButtonContent, ...formItems) {
+    constructor(...formItems) {
         super("form");
-        this.#submitButton = new SimpleButton("submit", null, submitButtonContent)
-            .asPrimary()
-            .disable()
-            .addClasses("m-1");
         this.#items = [];
         for (const formItem of formItems) {
             this.#items.push(formItem);
             this.appendChild(formItem);
         }
-        this.elem.oninput = event => this.enable();
+        this.elem.oninput = event => this.enableSubmit();
         this.elem.noValidate = true;
         this.addClasses("needs-validation");
-        this.appendChild(this.#submitButton);
     }
 
     /**
@@ -223,12 +218,18 @@ export class Form extends Element {
 
     /**
      * Binds a function for the submit event.
+     * @param {string} buttonContent submit button inner text
      * @param {function} fun 
      * @returns {Form} this
      */
-    onSubmit(fun) {
+    onSubmit(buttonContent, fun) {
+        this.#submitButton = new SimpleButton("submit", null, buttonContent)
+            .asPrimary()
+            .disable()
+            .addClasses("m-1");
+        this.appendChild(this.#submitButton);
         this.elem.addEventListener('submit', async event => {
-            this.disable();
+            this.disableSubmit();
             const oldInnerHTML = this.#submitButton.runSpinner();
             event.preventDefault();
             event.stopPropagation();
@@ -238,7 +239,7 @@ export class Form extends Element {
                 await fun(this);
             }
             else {
-                this.enable();
+                this.enableSubmit();
             }
             this.#submitButton.innerHTML = oldInnerHTML;
         }, false);
@@ -247,11 +248,12 @@ export class Form extends Element {
 
     /**
      * Binds a function for the cancel event.
+     * @param {string} buttonContent cancel button inner text
      * @param {function} fun 
      * @returns {Form} this
      */
-    onCancel(fun) {
-        this.appendChild(new SimpleButton("button", null, "Cancel")
+    onCancel(buttonContent, fun) {
+        this.appendChild(new SimpleButton("button", null, buttonContent)
             .asDanger()
             .enable()
             .addClasses("m-1")
@@ -263,8 +265,8 @@ export class Form extends Element {
      * Disables form submission.
      * @returns {Form} this
      */
-    disable() {
-        this.#submitButton.disable();
+    disableSubmit() {
+        this.#submitButton && this.#submitButton.disable();
         return this;
     }
 
@@ -272,8 +274,26 @@ export class Form extends Element {
      * Enables form submission.
      * @returns {Form} this
      */
-    enable() {
-        this.#submitButton.enable();
+    enableSubmit() {
+        this.#submitButton && this.#submitButton.enable();
+        return this;
+    }
+
+    /**
+     * Disables cancel button.
+     * @returns {Form} this
+     */
+    disableCancel() {
+        this.#cancelButton && this.#cancelButton.disable();
+        return this;
+    }
+
+    /**
+     * Enables cancel button.
+     * @returns {Form} this
+     */
+    enableCancel() {
+        this.#cancelButton && this.#cancelButton.enable();
         return this;
     }
 
@@ -285,7 +305,6 @@ export class Form extends Element {
         for (const item of this.#items) {
             item.readOnly();
         }
-        this.disable();
         return this;
     }
 }
