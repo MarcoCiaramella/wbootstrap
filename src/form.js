@@ -204,10 +204,10 @@ export class Form extends Element {
             .disable()
             .addClasses("m-1");
         this.#items = [];
-        formItems.forEach(formItem => {
+        for (const formItem of formItems) {
             this.#items.push(formItem);
             this.appendChild(formItem);
-        });
+        }
         this.elem.oninput = event => this.enable();
         this.elem.noValidate = true;
         this.addClasses("needs-validation");
@@ -274,6 +274,18 @@ export class Form extends Element {
      */
     enable() {
         this.#submitButton.enable();
+        return this;
+    }
+
+    /**
+     * Sets as read-only.
+     * @returns {Form} this
+     */
+    readOnly() {
+        for (const item of this.#items) {
+            item.readOnly();
+        }
+        this.disable();
         return this;
     }
 }
