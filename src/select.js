@@ -38,4 +38,20 @@ export class Select extends Element {
     set value(val) {
         this.elem.value = val;
     }
+
+    /**
+     * Sets as read-only.
+     * @returns {Select} this
+     */
+    disable() {
+        return this;
+    }
+
+    /**
+     * Sets as editable field.
+     * @returns {Select} this
+     */
+    enable() {
+        return this;
+    }
 }

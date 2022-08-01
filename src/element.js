@@ -103,9 +103,17 @@ export class Element {
      * @returns {Element} this
      */
     addClasses(...classes) {
-        classes.forEach(cls => {
-            this.#elem.classList.add(cls);
-        });
+        this.#elem.classList.add(...classes);
+        return this;
+    }
+
+    /**
+     * Removes classes.
+     * @param  {...string} classes 
+     * @returns {Element} this
+     */
+    removeClasses(...classes) {
+        this.#elem.classList.remove(...classes);
         return this;
     }
 

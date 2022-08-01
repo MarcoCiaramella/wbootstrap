@@ -122,8 +122,17 @@ class FormItem extends Element {
      * Sets as read-only.
      * @returns {FormItem} this
      */
-    readOnly() {
-        this.#item.readOnly();
+    disable() {
+        this.#item.disable();
+        return this;
+    }
+
+    /**
+     * Sets as editable field.
+     * @returns {FormItem} this
+     */
+    enable() {
+        this.#item.enable();
         return this;
     }
 }
@@ -298,12 +307,23 @@ export class Form extends Element {
     }
 
     /**
-     * Sets as read-only.
+     * Disables items.
      * @returns {Form} this
      */
-    readOnly() {
+    disableItems() {
         for (const item of this.#items) {
-            item.readOnly();
+            item.disable();
+        }
+        return this;
+    }
+
+    /**
+     * Enables items.
+     * @returns {Form} this
+     */
+    enableItems() {
+        for (const item of this.#items) {
+            item.enable();
         }
         return this;
     }

@@ -36,9 +36,21 @@ export class Textarea extends Element {
      * Sets as read-only.
      * @returns {Textarea} this
      */
-    readOnly() {
+    disable() {
         this.elem.readOnly = true;
+        this.removeClasses("form-control");
         this.addClasses("form-control-plaintext");
+        return this;
+    }
+
+    /**
+     * Sets as editable field.
+     * @returns {Textarea} this
+     */
+    enable() {
+        this.elem.readOnly = false;
+        this.removeClasses("form-control-plaintext");
+        this.addClasses("form-control");
         return this;
     }
 
