@@ -26,5 +26,13 @@ export class Text extends Element {
         return this;
     }
 
+    /**
+     * Gets text.
+     * @returns {string} text
+     */
+    getText() {
+        return this.innerHTML;
+    }
+
 
 }
