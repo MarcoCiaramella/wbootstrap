@@ -1,5 +1,5 @@
 # wbootstrap
-wboostrap is a minimal wrapper for DOM based on Bootstrap and Google Material.
+wboostrap is a minimal wrapper for DOM based on Bootstrap 5 and Google Material.
 ## Install
 ```
 npm i @marco_ciaramella/wbootstrap

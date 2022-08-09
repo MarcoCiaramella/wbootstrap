@@ -122,7 +122,7 @@ export class Element {
      * @returns {Element} this
      */
     show() {
-        this.#elem.style.visibility = "visible";
+        this.style.visibility = "visible";
         return this;
     }
 
@@ -131,7 +131,7 @@ export class Element {
      * @returns {Element} this
      */
     hide() {
-        this.#elem.style.visibility = "hidden";
+        this.style.visibility = "hidden";
         return this;
     }
 
@@ -207,7 +207,7 @@ export class Element {
      * @returns {Element} this
      */
     cursor(type) {
-        this.#elem.style.cursor = type;
+        this.style.cursor = type;
         return this;
     }
 
@@ -217,7 +217,7 @@ export class Element {
      * @returns {Element} this
      */
     color(c) {
-        this.#elem.style.color = c;
+        this.style.color = c;
         return this;
     }
 
@@ -227,7 +227,7 @@ export class Element {
      * @returns {Element} this
      */
     backgroundColor(c) {
-        this.#elem.style.backgroundColor = c;
+        this.style.backgroundColor = c;
         return this;
     }
 
@@ -235,12 +235,15 @@ export class Element {
      * Sets a background image in base64.
      * @param {string} imageBase64 
      * @param {string} backgroundSize a CSS background-size property value
+     * @param {string | number} aspectRatio CSS aspect-ratio property
      * @returns {Element} this
      */
-    backgroundImage(imageBase64, backgroundSize) {
-        this.#elem.style.backgroundImage = `url(${imageBase64})`;
-        this.#elem.style.backgroundRepeat = "no-repeat";
-        this.#elem.style.backgroundSize = backgroundSize;
+    backgroundImage(imageBase64, backgroundSize, aspectRatio) {
+        this.style.backgroundImage = `url(${imageBase64})`;
+        this.style.backgroundRepeat = "no-repeat";
+        this.style.backgroundSize = backgroundSize;
+        aspectRatio = aspectRatio ? aspectRatio : 1;
+        this.style.cssText += `aspect-ratio:${aspectRatio}`;
         return this;
     }
 
@@ -264,8 +267,8 @@ export class Element {
      * @returns {Element} this
      */
     size(width, height) {
-        this.#elem.style.width = width;
-        this.#elem.style.height = height;
+        this.style.width = width;
+        this.style.height = height;
         return this;
     }
 
@@ -275,7 +278,7 @@ export class Element {
      * @returns {Element} this
      */
     filter(filter) {
-        this.#elem.style.filter = filter;
+        this.style.filter = filter;
         return this;
     }
 
@@ -294,7 +297,7 @@ export class Element {
      * @returns {Element} this
      */
     center() {
-        this.#elem.style.margin = "auto";
+        this.style.margin = "auto";
         return this;
     }
 
@@ -304,7 +307,7 @@ export class Element {
      * @returns {Element} this
      */
     zIndex(z) {
-        this.#elem.style.zIndex = z;
+        this.style.zIndex = z;
         return this;
     }
 
@@ -314,7 +317,7 @@ export class Element {
      * @returns {Element} this
      */
     display(d) {
-        this.#elem.style.display = d;
+        this.style.display = d;
         return this;
     }
 
@@ -324,7 +327,7 @@ export class Element {
      * @returns {Element} this
      */
     maxWidth(mw) {
-        this.#elem.style.maxWidth = mw;
+        this.style.maxWidth = mw;
         return this;
     }
 
@@ -334,7 +337,7 @@ export class Element {
      * @returns {Element} this
      */
     minWidth(mw) {
-        this.#elem.style.minWidth = mw;
+        this.style.minWidth = mw;
         return this;
     }
 
@@ -344,7 +347,7 @@ export class Element {
      * @returns {Element} this
      */
     maxHeight(mh) {
-        this.#elem.style.maxHeight = mh;
+        this.style.maxHeight = mh;
         return this;
     }
 
@@ -354,7 +357,7 @@ export class Element {
      * @returns {Element} this
      */
     minHeight(mh) {
-        this.#elem.style.minHeight = mh;
+        this.style.minHeight = mh;
         return this;
     }
 
