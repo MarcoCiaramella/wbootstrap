@@ -137,12 +137,17 @@ export class Element {
 
     /**
      * Binds a function for the onclick event.
-     * @param {function} fun 
+     * @param {function | null} fun the onclick callback. If null removes the callback
      * @returns {Element} this
      */
     onClick(fun) {
         this.cursor("pointer");
-        this.#elem.onclick = () => fun && fun(this);
+        if (fun) {
+            this.#elem.onclick = () => fun(this);
+        }
+        else {
+            this.#elem.onclick = null;
+        }
         return this;
     }
 
