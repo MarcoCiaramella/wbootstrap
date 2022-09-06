@@ -40,6 +40,16 @@ export class Element {
     }
 
     /**
+     * Removes the specified child.
+     * @param {Element} child 
+     * @returns {Element} this
+     */
+    removeChild(child) {
+        this.#elem.removeChild(child.elem);
+        return this;
+    }
+
+    /**
      * Sets element's parent.
      */
     set parent(parent) {
