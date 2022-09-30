@@ -44,6 +44,7 @@ export class Select extends Element {
      * @returns {Select} this
      */
     disable() {
+        this.elem.disabled = true;
         return this;
     }
 
@@ -52,6 +53,7 @@ export class Select extends Element {
      * @returns {Select} this
      */
     enable() {
+        this.elem.disabled = false;
         return this;
     }
 }
