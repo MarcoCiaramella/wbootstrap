@@ -303,7 +303,7 @@ export class Element {
      * @returns {Element} this
      */
     onWheel(fun) {
-        this.#elem.onwheel = event => fun(event);
+        this.#elem.onwheel = event => fun(this, event);
         return this;
     }
 
@@ -389,7 +389,7 @@ export class Element {
      * @returns {Element} this
      */
     onMouseOver(fun) {
-        this.#elem.onmouseover = event => fun(event);
+        this.#elem.onmouseover = event => fun(this, event);
         return this;
     }
 
@@ -399,7 +399,7 @@ export class Element {
      * @returns {Element} this
      */
     onMouseLeave(fun) {
-        this.#elem.onmouseleave = event => fun(event);
+        this.#elem.onmouseleave = event => fun(this, event);
         return this;
     }
 
