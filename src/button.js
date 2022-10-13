@@ -56,7 +56,11 @@ class Button extends Element {
         this.elem.onclick = async () => {
             this.disable();
             const oldInnerHTML = this.runSpinner();
-            await fun(this);
+            try {
+                await fun(this);
+            } catch (error) {
+                console.error(error);
+            }
             this.innerHTML = oldInnerHTML;
             this.enable();
         };
