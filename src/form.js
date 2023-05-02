@@ -228,11 +228,10 @@ export class Form extends Element {
     /**
      * Binds a function for the submit event.
      * @param {string} buttonContent submit button inner text
-     * @param {string} message the message in the button after click
      * @param {function} fun 
      * @returns {Form} this
      */
-    onSubmit(buttonContent, message, fun) {
+    onSubmit(buttonContent, fun) {
         this.#submitButton = new SimpleButton("submit", null, buttonContent)
             .asPrimary()
             .disable()
@@ -240,7 +239,7 @@ export class Form extends Element {
         this.appendChild(this.#submitButton);
         this.elem.addEventListener('submit', async event => {
             this.disableSubmit();
-            const oldInnerHTML = this.#submitButton.runSpinner(message);
+            const oldInnerHTML = this.#submitButton.runSpinner();
             event.preventDefault();
             event.stopPropagation();
             this.#items.forEach(item => item.clear().validate());
