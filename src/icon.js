@@ -12,7 +12,7 @@ export class MaterialIcon extends Element {
      */
     constructor(name, color) {
         super("span");
-        this.addClasses("material-icons-outlined");
+        this.addClasses("material-symbols-outlined");
         this.style.verticalAlign = "middle";
         this.elem.innerHTML = name;
         color && this.color(color);
