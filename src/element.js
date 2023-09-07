@@ -15,8 +15,10 @@ export class Element {
      * @param {string} elem one of possible HTML elements
      */
     constructor(elem) {
-        this.#elem = document.createElement(elem);
-        this.#elem.id = Element.id++;
+        if (elem) {
+            this.#elem = document.createElement(elem);
+            this.#elem.id = Element.id++;
+        }
     }
 
     /**
@@ -68,6 +70,13 @@ export class Element {
      */
     get elem() {
         return this.#elem;
+    }
+
+    /**
+     * Sets the HTML element.
+     */
+    set elem(elem) {
+        this.#elem = elem;
     }
 
     /**
