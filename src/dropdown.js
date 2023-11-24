@@ -26,7 +26,7 @@ export class DropdownMenu extends Element {
      * @returns {DropdownMenu} this
      */
     addItem(text, fun) {
-        this.appendChild(new Element('li').appendChild(new Text('p', text).addClasses('dropdown-item').onClick(fun)));
+        this.appendChild(new Element('li').appendChild(new Text('p', text).addClasses('dropdown-item').onClick(() => fun(text))));
         return this;
     }
 
