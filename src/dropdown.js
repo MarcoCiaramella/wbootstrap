@@ -1,4 +1,5 @@
 import { Element } from "./element";
+import { Text } from "./text";
 
 export class DropdownMenu extends Element {
 
@@ -15,6 +16,17 @@ export class DropdownMenu extends Element {
      */
     addItem(text, href) {
         this.innerHTML += `<li><a class="dropdown-item" href="${href}">${text}</a></li>`;
+        return this;
+    }
+
+    /**
+     * Adds a dropdown item.
+     * @param {string} text 
+     * @param {function} fun 
+     * @returns {DropdownMenu} this
+     */
+    addItem(text, fun) {
+        this.appendChild(new Element('li').appendChild(new Text('p', text).addClasses('dropdown-item').onClick(fun)));
         return this;
     }
 
