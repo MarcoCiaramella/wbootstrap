@@ -11,17 +11,6 @@ export class DropdownMenu extends Element {
     /**
      * Adds a dropdown item.
      * @param {string} text 
-     * @param {string} href 
-     * @returns {DropdownMenu} this
-     */
-    addItem(text, href) {
-        this.innerHTML += `<li><a class="dropdown-item" href="${href}">${text}</a></li>`;
-        return this;
-    }
-
-    /**
-     * Adds a dropdown item.
-     * @param {string} text 
      * @param {function} fun 
      * @returns {DropdownMenu} this
      */
