@@ -25,7 +25,7 @@ export class DropdownMenu extends Element {
         a.elem.setAttribute("aria-expanded", "false");
         a.innerText = text;
         menu.elem.setAttribute("aria-labelledby", a.id);
-        this.innerHTML += `<li class="dropend">${a.outerHTML}${menu.outerHTML}</li>`;
+        this.appendChild(new Element('li').addClasses('dropend').appendChild(a).appendChild(menu));
         return this;
     }
 }
