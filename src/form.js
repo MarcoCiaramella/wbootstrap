@@ -235,7 +235,7 @@ export class Form extends Element {
     onSubmit(callback, buttonContent, ...buttonClasses) {
         this.#submitButton = new SimpleButton("submit", null, buttonContent)
             .disable()
-            .addClasses("m-1", ...buttonClasses);
+            .addClasses(...buttonClasses);
         this.appendChild(this.#submitButton);
         this.elem.addEventListener('submit', async event => {
             this.disableSubmit();
@@ -265,7 +265,7 @@ export class Form extends Element {
     onCancel(callback, buttonContent, ...buttonClasses) {
         this.appendChild(new SimpleButton("button", null, buttonContent)
             .enable()
-            .addClasses("m-1", ...buttonClasses)
+            .addClasses(...buttonClasses)
             .onClick(button => callback(this)));
         return this;
     }
