@@ -226,16 +226,16 @@ export class Form extends Element {
     }
 
     /**
-     * Binds a function for the submit event.
+     * Binds a callback for the submit event.
+     * @param {function} callback
      * @param {string} buttonContent submit button inner text
-     * @param {function} fun 
+     * @param {...string} buttonClasses submit button classes
      * @returns {Form} this
      */
-    onSubmit(buttonContent, fun) {
+    onSubmit(callback, buttonContent, ...buttonClasses) {
         this.#submitButton = new SimpleButton("submit", null, buttonContent)
-            .asPrimary()
             .disable()
-            .addClasses("m-1");
+            .addClasses("m-1", ...buttonClasses);
         this.appendChild(this.#submitButton);
         this.elem.addEventListener('submit', async event => {
             this.disableSubmit();
@@ -245,7 +245,7 @@ export class Form extends Element {
             this.#items.forEach(item => item.clear().validate());
             this.addClasses('was-validated');
             if (this.elem.checkValidity()) {
-                await fun(this);
+                await callback(this);
             }
             else {
                 this.enableSubmit();
@@ -256,17 +256,17 @@ export class Form extends Element {
     }
 
     /**
-     * Binds a function for the cancel event.
+     * Binds a callback for the cancel event.
+     * @param {function} callback 
      * @param {string} buttonContent cancel button inner text
-     * @param {function} fun 
+     * @param {...string} buttonClasses cancel button classes
      * @returns {Form} this
      */
-    onCancel(buttonContent, fun) {
+    onCancel(callback, buttonContent, ...buttonClasses) {
         this.appendChild(new SimpleButton("button", null, buttonContent)
-            .asDanger()
             .enable()
-            .addClasses("m-1")
-            .onClick(button => fun(this)));
+            .addClasses("m-1", ...buttonClasses)
+            .onClick(button => callback(this)));
         return this;
     }
 
