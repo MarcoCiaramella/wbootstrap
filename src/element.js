@@ -180,18 +180,13 @@ export class Element {
     }
 
     /**
-     * Replaces oldChild with newChild.
-     * @param {Element} newChild 
-     * @param {Element | null} [oldChild] optional. If not defined newChild will be appended
+     * Replaces in parent this Element with the input Element.
+     * @param {Element} elem 
      * @returns {Element} this
      */
-    replaceChild(newChild, oldChild) {
-        if (newChild && oldChild) {
-            newChild.parent = this;
-            this.#elem.replaceChild(newChild.elem, oldChild.elem);
-        }
-        else {
-            this.appendChild(newChild);
+    replace(elem) {
+        if (this.parent) {
+            this.parent.elem.replaceChild(elem.elem, this.elem);
         }
         return this;
     }

@@ -42,17 +42,6 @@ class GridRow extends Element {
     }
 
     /**
-     * Replaces GridItem.
-     * @param {GridItem} newItem 
-     * @param {GridItem} oldItem 
-     * @returns {GridRow} this
-     */
-    replace(newItem, oldItem) {
-        this.replaceChild(newItem, oldItem);
-        return this;
-    }
-
-    /**
      * Removes GridItem.
      * @param {GridItem} item 
      * @returns {GridRow} this
