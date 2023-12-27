@@ -38,24 +38,26 @@ class Button extends Element {
 
     /**
      * Replaces inner HTML with a loading spinner.
+     * @param {string | null | undefined} text the loading message
      * @returns {string} replaced inner HTML
      */
-    runSpinner() {
+    runSpinner(text) {
         const oldInnerHTML = this.innerHTML;
-        this.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...';
+        this.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>${text ? text : ''}`;
         return oldInnerHTML;
     }
 
     /**
      * Binds a function for the onclick event.
      * @param {function} fun 
+     * @param {string | null | undefined} text the loading message displayed in button after click
      * @returns {Button} this
      */
-    onClick(fun) {
+    onClick(fun, text) {
         this.cursor("pointer");
         this.elem.onclick = async () => {
             this.disable();
-            const oldInnerHTML = this.runSpinner();
+            const oldInnerHTML = this.runSpinner(text);
             try {
                 await fun(this);
             } catch (error) {

@@ -229,17 +229,18 @@ export class Form extends Element {
      * Binds a callback for the submit event.
      * @param {function} callback
      * @param {string} buttonContent submit button inner text
+     * @param {string | null} buttonLoading the loading message displayed in button after click
      * @param {...string} buttonClasses submit button classes
      * @returns {Form} this
      */
-    onSubmit(callback, buttonContent, ...buttonClasses) {
+    onSubmit(callback, buttonContent, buttonLoading, ...buttonClasses) {
         this.#submitButton = new SimpleButton("submit", null, buttonContent)
             .disable()
             .addClasses(...buttonClasses);
         this.appendChild(this.#submitButton);
         this.elem.addEventListener('submit', async event => {
             this.disableSubmit();
-            const oldInnerHTML = this.#submitButton.runSpinner();
+            const oldInnerHTML = this.#submitButton.runSpinner(buttonLoading);
             event.preventDefault();
             event.stopPropagation();
             this.#items.forEach(item => item.clear().validate());
@@ -259,14 +260,15 @@ export class Form extends Element {
      * Binds a callback for the cancel event.
      * @param {function} callback 
      * @param {string} buttonContent cancel button inner text
+     * @param {string | null} buttonLoading the loading message displayed in button after click
      * @param {...string} buttonClasses cancel button classes
      * @returns {Form} this
      */
-    onCancel(callback, buttonContent, ...buttonClasses) {
+    onCancel(callback, buttonContent, buttonLoading, ...buttonClasses) {
         this.appendChild(new SimpleButton("button", null, buttonContent)
             .enable()
             .addClasses(...buttonClasses)
-            .onClick(button => callback(this)));
+            .onClick(button => callback(this), buttonLoading));
         return this;
     }
 
