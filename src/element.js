@@ -187,6 +187,7 @@ export class Element {
     replace(elem) {
         if (this.parent) {
             this.parent.elem.replaceChild(elem.elem, this.elem);
+            elem.parent = this.parent;
         }
         return this;
     }
