@@ -135,6 +135,16 @@ class FormItem extends Element {
         this.#item.enable();
         return this;
     }
+
+    /**
+     * Replaces in Form this FormItem with the input FormItem.
+     * @param {FormItem} formItem 
+     * @returns {FormItem} this
+     */
+    replace(formItem) {
+        super.replace(formItem).parent.items.push(formItem);
+        return this;
+    }
 }
 
 /**
